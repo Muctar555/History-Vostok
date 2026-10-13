@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light">
+    <title>Касситский Вавилон и зарождение Ассирии: уроки истории для современности</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* БУКВИЦА BRAND STYLES v4.0 */
+        :root {
+            color-scheme: light;
+            /* Palette */
+            --dark: #101827;       /* Заголовки */
+            --grey: #6B7280;       /* Текст */
+            --pink: #FA2F6B;       /* Акцент 1 */
+            --blue: #2463EB;       /* Акцент 2 */
+            --sky: #6AC2EA;        /* Доп. акцент */
+            --bg-body: #F9FAFB;    /* Фон */
+            --bg-card: #FFFFFF;    /* Плашки */
+
+            /* Backgrounds for boxes */
+            --bg-blue-muted: #C9D7F5;
+            --bg-pink-muted: #F9CCDB;
+
+            /* Styles */
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+            --radius: 16px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: var(--bg-body);
+            color: var(--grey);
+            line-height: 1.65;
+            padding: 24px 16px;
+            font-weight: 400;
+        }
+
+        strong { color: var(--dark); font-weight: 700; }
+
+        .container { max-width: 760px; margin: 0 auto; }
+
+        /* HEADER */
+        .header {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 40px;
+            margin-bottom: 32px;
+            box-shadow: var(--shadow);
+            border-top: 6px solid var(--blue);
+            text-align: center;
+        }
+        .header-pre { color: var(--sky); text-transform: uppercase; font-size: 13px; font-weight: 700; letter-spacing: 1px; margin-bottom: 12px; }
+        .header-title { font-size: 32px; line-height: 1.2; color: var(--dark); font-weight: 700; margin-bottom: 16px; }
+        .header-sub { font-size: 18px; color: var(--grey); font-weight: 400; }
+
+        .tags { display: flex; justify-content: center; gap: 8px; margin-top: 24px; flex-wrap: wrap; }
+        .tag { background: #EEF4FF; color: var(--blue); padding: 4px 12px; border-radius: 100px; font-size: 13px; font-weight: 500; }
+
+        /* SECTIONS */
+        .section {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: transform 0.2s ease;
+        }
+        .section:hover { transform: translateY(-2px); }
+
+        .section-header {
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            border-bottom: 1px solid transparent;
+        }
+        .section.collapsed .section-header { border-bottom: none; }
+
+        .section-icon {
+            width: 44px; height: 44px;
+            background: #EEF4FF;
+            color: var(--dark);
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 22px;
+            margin-right: 16px;
+            flex-shrink: 0;
+        }
+
+        .section-title { font-size: 20px; font-weight: 700; color: var(--dark); flex: 1; margin: 0; }
+        .section-toggle {
+            width: 24px; height: 24px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--grey);
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+        .section.collapsed .section-toggle { transform: rotate(-90deg); }
+
+        .section-content {
+            padding: 0 24px 32px 24px;
+            color: var(--grey);
+            font-size: 16px;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+        }
+        .section.collapsed .section-content { max-height: 0 !important; padding-bottom: 0; }
+
+        /* CONTENT BLOCKS */
+        p { margin-bottom: 16px; }
+        ul, ol { margin-bottom: 24px; padding-left: 24px; }
+        li { margin-bottom: 8px; }
+
+        /* The "Pink" Box - предупреждения, ошибки, важное */
+        .box-pink {
+            background: var(--bg-pink-muted);
+            padding: 24px;
+            border-radius: 12px;
+            margin: 24px 0;
+            border-left: 4px solid var(--pink);
+        }
+        .box-pink h4 { color: var(--dark); margin: 0 0 8px 0; font-size: 16px; display: flex; align-items: center; gap: 8px; }
+        .box-pink h4::before { content: '⚡'; }
+        .box-pink p:last-child { margin-bottom: 0; }
+
+        /* The "Blue" Box - инсайты, кейсы, приёмы */
+        .box-blue {
+            background: var(--bg-blue-muted);
+            padding: 24px;
+            border-radius: 12px;
+            margin: 24px 0;
+            border-left: 4px solid var(--blue);
+        }
+        .box-blue h4 { color: var(--dark); margin: 0 0 8px 0; font-size: 16px; display: flex; align-items: center; gap: 8px; }
+        .box-blue h4::before { content: '💎'; }
+        .box-blue p:last-child { margin-bottom: 0; }
+
+        /* Quote */
+        .quote {
+            font-size: 18px;
+            font-style: italic;
+            color: var(--dark);
+            border-left: 4px solid var(--sky);
+            padding-left: 20px;
+            margin: 32px 0;
+        }
+        .quote-author { font-size: 14px; color: var(--grey); font-style: normal; margin-top: 8px; font-weight: 500; }
+
+        /* Stats Grid */
+        .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; margin: 24px 0; }
+        .stat-card { background: var(--bg-body); border-radius: 12px; padding: 16px; text-align: center; border: 1px solid #E5E7EB; }
+        .stat-val { font-size: 28px; font-weight: 700; color: var(--blue); line-height: 1.1; margin-bottom: 4px; }
+        .stat-lbl { font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; color: var(--grey); }
+
+        /* CHECKLIST */
+        .checklist {
+            background: var(--bg-card);
+            padding: 32px;
+            border-radius: var(--radius);
+            margin-top: 40px;
+            box-shadow: var(--shadow);
+            border: 2px solid var(--bg-blue-muted);
+        }
+        .chk-header { flex: 1; }
+        .chk-title { font-size: 24px; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
+        .chk-desc { font-size: 14px; margin-bottom: 24px; }
+
+        .chk-group-title {
+            font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--pink); font-weight: 700;
+            margin: 24px 0 12px 0;
+        }
+
+        .chk-item {
+            display: flex; gap: 16px; padding: 12px 0;
+            border-bottom: 1px solid #F3F4F6; cursor: pointer;
+            transition: all 0.2s;
+        }
+        .chk-item:hover { opacity: 0.8; }
+        .chk-item:last-of-type { border-bottom: none; }
+
+        .checkbox {
+            width: 22px; height: 22px;
+            border: 2px solid var(--grey); border-radius: 6px;
+            flex-shrink: 0; margin-top: 2px; position: relative;
+            transition: all 0.2s;
+        }
+        .chk-item.checked .checkbox { background: var(--blue); border-color: var(--blue); }
+        .chk-item.checked .checkbox::after {
+            content: ''; position: absolute; left: 6px; top: 2px; width: 5px; height: 10px;
+            border: solid white; border-width: 0 2px 2px 0; transform: rotate(45deg);
+        }
+        .chk-text strong { display: block; font-size: 15px; color: var(--dark); transition: color 0.2s; }
+        .chk-item.checked .chk-text strong { color: var(--grey); text-decoration: line-through; }
+        .chk-text span { font-size: 13px; color: var(--grey); }
+
+        /* Progress (добавляется скриптом) */
+        .chk-progress { margin-top: 24px; }
+        .chk-progress-track { height: 6px; background: #F3F4F6; border-radius: 3px; overflow: hidden; }
+        .chk-progress-fill { width: 0%; height: 100%; background: var(--blue); transition: width 0.3s; }
+        .chk-progress-label { font-size: 13px; color: var(--grey); margin-top: 8px; text-align: right; font-weight: 500; }
+
+        /* Footer */
+        .footer { text-align: center; padding: 40px 0; margin-top: 20px; border-top: 1px solid #E5E7EB; }
+        .footer-time { background: var(--bg-card); display: inline-block; padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 500; color: var(--dark); border: 1px solid #E5E7EB; }
+        .footer-cta {
+            display: inline-block;
+            background: var(--blue); color: #FFFFFF;
+            font-weight: 700; font-size: 16px;
+            padding: 14px 28px; border-radius: 100px;
+            text-decoration: none;
+            margin: 8px 0 16px 0;
+            box-shadow: var(--shadow);
+            transition: background 0.2s, transform 0.2s;
+        }
+        .footer-cta:hover { background: var(--pink); transform: translateY(-1px); }
+        .footer-brand { font-size: 14px; color: var(--grey); }
+        .footer-brand a { color: var(--blue); font-weight: 700; text-decoration: none; }
+        .footer-brand a:hover { color: var(--pink); }
+
+        @media (max-width: 600px) {
+            .header { padding: 24px; text-align: left; }
+            .header-title { font-size: 24px; }
+            .tags { justify-content: flex-start; }
+            .section-header { padding: 16px; }
+            .section-icon { width: 36px; height: 36px; font-size: 18px; margin-right: 12px; }
+            .section-content { padding: 0 16px 24px 16px; }
+            .checklist { padding: 24px 16px; }
+        }
+
+        @media print {
+            body { background: #FFFFFF; padding: 0; }
+            .header, .section, .checklist { box-shadow: none; border: 1px solid #E5E7EB; }
+            .section { break-inside: avoid; }
+            .section:hover { transform: none; }
+            .section-content { max-height: none !important; padding: 0 24px 24px 24px !important; }
+            .section-toggle, .chk-progress, .footer-cta { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+<header class="header">
+  <div class="header-pre">Интерактивный конспект</div>
+  <h1 class="header-title">Касситский Вавилон и зарождение Ассирии: уроки истории для современности</h1>
+  <div class="header-sub">Как упадок образования и культуры влияет на государственность, а экономические реформы — на благосостояние</div>
+  <div class="tags"><span class="tag">#ИсторияДревнегоМира</span><span class="tag">#Месопотамия</span><span class="tag">#Касситы</span><span class="tag">#Ассирия</span><span class="tag">#Образование</span></div>
+</header>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">⚡</div>
+    <h2 class="section-title">Суть за 30 секунд</h2>
+  </div>
+  <div class="section-content">
+    <ul>
+      <li><strong>Упадок образования приводит к забвению истории:</strong> Касситский Вавилон оставил мало письменных источников из-за уничтожения школ и неграмотности правителей, что затрудняет изучение этого периода.</li>
+      <li><strong>Экономические свободы стимулируют развитие:</strong> Куригальзу I ввёл самоуправляемые города, свободные от налогов, что стало прообразом современных СЭЗ и привело к экономическому росту.</li>
+      <li><strong>Ассирия — результат смешения народов и воинственности:</strong> Этот народ сформировался из семитских и хуритских племён, а его ранние правители, такие как Салманасар I, прославились жестокостью, порождавшей ненависть покорённых народов.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">🧠</div>
+    <h2 class="section-title">Касситский Вавилон: почему так мало знаем?</h2>
+  </div>
+  <div class="section-content">
+    <p>Период с XVI по XI век до нашей эры, когда Вавилоном правили касситы, остаётся одним из наименее изученных в истории Месопотамии. Это связано с <strong>катастрофическим упадком письменности и образования</strong> после завоевания.</p>
+    <div class="box-pink"><h4>Исчезновение «э-дуба»</h4><p>Касситы, будучи неграмотными, не ценили шумерские школы высшей грамотности («э-дуба»). Они не видели смысла тратить деньги на содержание университетов, что привело к их закрытию и бегству образованных людей. В результате, практически не осталось исторических записей этого периода.</p></div>
+    <p>Это демонстрирует, как <strong>отсутствие поддержки образования может привести к потере культурного и исторического наследия</strong>. Без образованного населения страна неспособна развиваться, поддерживать контакты и даже просто фиксировать свои достижения.</p>
+    <div class="quote">«Не будет образования — ни фига не будет. Не будет людей, кто понимает, что делать в государстве можно, чего нельзя.»<div class="quote-author">— Лектор</div></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">💰</div>
+    <h2 class="section-title">Куригальзу I: пионер свободных экономических зон</h2>
+  </div>
+  <div class="section-content">
+    <p>Среди касситских правителей выделяется Куригальзу I (XIV век до н.э.), который объявил Вавилон и Сеппар <strong>самоуправляющимися городами, свободными от налогов</strong>. Это стало первым в истории человечества примером создания свободных экономических зон.</p>
+    <div class="box-blue"><h4>Механизм экономического роста</h4><p>Освобождение от налогов стимулировало взрывной экономический рост. Компании и торговцы стекались в эти города, развивая торговлю и производство. Это привлекало инвестиции и создавало рабочие места, что в итоге способствовало развитию всей экономики страны.</p></div>
+    <p>Современные примеры, такие как Шэньчжэнь в Китае или Владивосток в России, показывают, что этот принцип работает и сегодня. <strong>Экономические свободы привлекают капитал и таланты, создавая мощную финансовую и социальную поддержку</strong> для государства.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">⚔️</div>
+    <h2 class="section-title">Войны и грабежи: Элам и Вавилон</h2>
+  </div>
+  <div class="section-content">
+    <p>Касситский Вавилон постоянно сталкивался с войнами и грабежами. Куригальзу II (XIII век до н.э.) начал войну с Эламом, что привело к ответному походу эламитов в 1225 году до н.э. <strong>Вавилон был разграблен до нитки</strong>, а знаменитый Столб с законами Хаммурапи был вывезен в Сузы.</p>
+    <p>Позднее, Навуходоносор I (XII век до н.э.) из второй династии Иссина совершил поход возмездия в Элам, после которого Элам <strong>исчез из исторических источников на 300 лет</strong>. Это свидетельствует о тотальном уничтожении и разрушении, которое постигло эту территорию.</p>
+    <div class="stats">
+      <div class="stat-card"><div class="stat-val">1595 г. до н.э.</div><div class="stat-lbl">Падение династии Хаммурапи</div></div>
+      <div class="stat-card"><div class="stat-val">1225 г. до н.э.</div><div class="stat-lbl">Разграбление Вавилона эламитами</div></div>
+    </div>
+    <p>Эти события показывают <strong>цикличность насилия и возмездия</strong> в древнем мире, где каждый акт агрессии порождал ответную реакцию, часто с ещё большей жестокостью.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">🧩</div>
+    <h2 class="section-title">Зарождение Ассирии: смешение народов и торговый форпост</h2>
+  </div>
+  <div class="section-content">
+    <p>Ассирия, как государство, начинает формироваться гораздо позже. Изначально это была <strong>территория, населённая смесью семитских (аккадцы, амареи) и хуритских племён</strong>. Город Ашшур, основанный ещё при династии Аккада, стал ключевым торговым форпостом.</p>
+    <p>Ашшурские купцы торговали с Ираном и Армянским Нагорьем, привозя обсидиан, лазурит, серебро, медь и олово. В обмен они предлагали зерно, ткани и пиво. <strong>Выгодное географическое положение и активная торговля</strong> способствовали быстрому росту города и формированию торгового населения.</p>
+    <div class="box-blue"><h4>Торговля как двигатель развития</h4><p>Купцы, оставаясь в Ашшуре, создавали инфраструктуру: гостиницы, рестораны, ремонтные мастерские. Это привлекало ещё больше торговцев, делая Ашшур крупным центром обмена товарами. Население города было кровно заинтересовано в поддержании и развитии торговых связей.</p></div>
+    <p>Этот процесс <strong>метисации и ассимиляции</strong> различных народов, объединённых общими экономическими интересами, привёл к появлению нового этноса — ассирийцев.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">📈</div>
+    <h2 class="section-title">Первые цари Ассирии: от войн до титула «Царь обитаемого мира»</h2>
+  </div>
+  <div class="section-content">
+    <p>Первым известным правителем, назвавшим себя «царем Ассирии», был <strong>Ашшур-убаллит I</strong> (1365-1330 гг. до н.э.). Он прославился войнами, расширяя территорию Ассирии и подчиняя значительную часть Верхней Месопотамии.</p>
+    <p>Его преемник, <strong>Адад-нерари I</strong> (1307-1275 гг. до н.э.), пошёл ещё дальше, приняв титул <strong>«Царь обитаемого мира»</strong>. Он воевал с Касситским Вавилоном и хуритами, значительно расширив границы Ассирии. Его сын, Салманасар I, продолжил политику завоеваний, но уже с невиданной жестокостью.</p>
+    <div class="box-pink"><h4>Жестокость порождает ненависть</h4><p>Салманасар I прибегал к чудовищным зверствам на завоёванных территориях, стремясь внушить ужас при одном упоминании Ассирии. Он добился этого, но ценой вечной ненависти покорённых народов, что в конечном итоге сыграло роковую роль в судьбе Ассирийской империи.</p></div>
+    <p>История Ассирии показывает, что <strong>военная мощь и жестокость могут привести к временному доминированию, но не к долгосрочной стабильности и лояльности</strong> завоёванных народов.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">💡</div>
+    <h2 class="section-title">Образование как «мышца» мозга</h2>
+  </div>
+  <div class="section-content">
+    <p>Лектор подчёркивает <strong>важность непрерывного интеллектуального труда</strong>, сравнивая мозг с мышцей. Если мозг не напрягается в период с 17 до 25 лет на пределе своих возможностей, человек теряет способность к интеллектуальной деятельности.</p>
+    <div class="box-blue"><h4>Мозг требует нагрузки</h4><p>Подобно тому, как атрофируются мышцы без физических нагрузок, мозг теряет свои функции без интеллектуального напряжения. Только постоянное обучение и решение сложных задач позволяют сохранять и развивать умственные способности.</p></div>
+    <p>Это призыв к студентам <strong>усердно учиться и не избегать трудностей</strong>, поскольку именно сейчас формируется их интеллектуальный потенциал. В противном случае, даже с дипломом, человек может остаться без настоящего образования и способности к глубокому мышлению.</p>
+  </div>
+</section>
+
+<div class="checklist">
+  <div class="chk-header">
+    <div class="chk-title">🚀 Чек-лист внедрения</div>
+    <div class="chk-desc">Отмечайте выполненное — прогресс сохранится при следующем открытии файла</div>
+  </div>
+  <div class="chk-group-title">Прямо сейчас</div>
+  <div class="chk-item"><div class="chk-text"><strong>Проанализировать роль образования в вашей сфере</strong><span>Подумайте, какие знания и навыки критически важны для вашей профессии и как их отсутствие может повлиять на долгосрочную перспективу.</span></div></div>
+  <div class="chk-item"><div class="chk-text"><strong>Оценить экономические стимулы в вашей компании или проекте</strong><span>Есть ли у вас "свободные экономические зоны" или механизмы, которые стимулируют рост и инновации?</span></div></div>
+  <div class="chk-group-title">На этой неделе</div>
+  <div class="chk-item"><div class="chk-text"><strong>Изучить историю возникновения вашей отрасли</strong><span>Понимание корней и эволюции поможет выявить скрытые закономерности и возможности.</span></div></div>
+  <div class="chk-item"><div class="chk-text"><strong>Найти примеры успешного смешения культур или идей в вашей области</strong><span>Как синтез различных подходов приводил к прорывам и формированию новых направлений?</span></div></div>
+  <div class="chk-group-title">На перспективу</div>
+  <div class="chk-item"><div class="chk-text"><strong>Разработать личный план непрерывного образования</strong><span>Включите в него изучение новых областей, чтение специализированной литературы и посещение обучающих мероприятий.</span></div></div>
+  <div class="chk-item"><div class="chk-text"><strong>Оценить долгосрочные последствия ваших действий</strong><span>Подумайте, как ваши решения сегодня повлияют на будущее вашей команды, проекта или даже всей отрасли, учитывая уроки истории о жестокости и ненависти.</span></div></div>
+</div>
+
+        <footer class="footer">
+            <div style="margin-bottom: 16px;">
+                <span class="footer-time">🎬 79 мин видео → 📖 ~6 мин чтения</span>
+            </div>
+            <a class="footer-cta" href="https://t.me/BukvitsaAI_bot?start=8401768802" target="_blank" rel="noopener">Сделать конспект своего видео →</a>
+            <div class="footer-brand">Создано в <a href="https://t.me/BukvitsaAI_bot?start=8401768802" target="_blank" rel="noopener">«Буквице»</a></div>
+        </footer>
+    </div>
+
+    <script>
+    (function () {
+        function all(sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
+
+        /* --- Служебные элементы: модель их не генерирует, добавляем сами --- */
+        all('.section-header').forEach(function (h) {
+            if (!h.querySelector('.section-toggle')) {
+                var t = document.createElement('div');
+                t.className = 'section-toggle';
+                t.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>';
+                h.appendChild(t);
+            }
+        });
+        all('.chk-item').forEach(function (i) {
+            if (!i.querySelector('.checkbox')) {
+                var c = document.createElement('div');
+                c.className = 'checkbox';
+                i.insertBefore(c, i.firstChild);
+            }
+        });
+
+        var checklist = document.querySelector('.checklist');
+        var fill = null, label = null;
+        if (checklist && all('.chk-item').length) {
+            var wrap = document.createElement('div');
+            wrap.className = 'chk-progress';
+            wrap.innerHTML = '<div class="chk-progress-track"><div class="chk-progress-fill"></div></div><div class="chk-progress-label"></div>';
+            checklist.appendChild(wrap);
+            fill = wrap.querySelector('.chk-progress-fill');
+            label = wrap.querySelector('.chk-progress-label');
+        }
+
+        /* --- Сохранение прогресса чек-листа между открытиями файла --- */
+        var titleEl = document.querySelector('.header-title');
+        var KEY = 'bukvitsa:' + (titleEl ? titleEl.textContent : document.title).trim().toLowerCase().replace(/\s+/g, '-').slice(0, 80);
+
+        function updateProgress() {
+            var items = all('.chk-item');
+            var done = items.filter(function (i) { return i.classList.contains('checked'); }).length;
+            if (fill) fill.style.width = (items.length ? Math.round(done / items.length * 100) : 0) + '%';
+            if (label) label.textContent = done + ' из ' + items.length;
+        }
+        function saveState() {
+            try {
+                var checked = [];
+                all('.chk-item').forEach(function (it, idx) { if (it.classList.contains('checked')) checked.push(idx); });
+                localStorage.setItem(KEY, JSON.stringify(checked));
+            } catch (e) { /* приватный режим и т.п. */ }
+        }
+        try {
+            var saved = JSON.parse(localStorage.getItem(KEY) || '[]');
+            all('.chk-item').forEach(function (it, idx) { if (saved.indexOf(idx) !== -1) it.classList.add('checked'); });
+        } catch (e) { /* игнорируем повреждённые данные */ }
+        updateProgress();
+
+        /* --- Клики: делегирование, никаких onclick в разметке --- */
+        document.addEventListener('click', function (e) {
+            var target = e.target;
+            var item = target.closest ? target.closest('.chk-item') : null;
+            if (item) {
+                item.classList.toggle('checked');
+                saveState();
+                updateProgress();
+                return;
+            }
+            var head = target.closest ? target.closest('.section-header') : null;
+            if (head) {
+                var sec = head.closest('.section');
+                var content = sec.querySelector('.section-content');
+                sec.classList.toggle('collapsed');
+                if (sec.classList.contains('collapsed')) {
+                    content.style.maxHeight = '';
+                } else {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                }
+            }
+        });
+
+        /* --- Высоты секций для анимации сворачивания --- */
+        function initHeights() {
+            all('.section:not(.collapsed) .section-content').forEach(function (el) {
+                el.style.maxHeight = el.scrollHeight + 'px';
+            });
+        }
+        window.addEventListener('load', initHeights);
+        window.addEventListener('resize', initHeights);
+        initHeights();
+    })();
+    </script>
+</body>
+</html>
