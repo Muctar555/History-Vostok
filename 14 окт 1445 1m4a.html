@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light">
+    <title>Как Китай стал Китаем: история названий и формирование нации</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* БУКВИЦА BRAND STYLES v4.0 */
+        :root {
+            color-scheme: light;
+            /* Palette */
+            --dark: #101827;       /* Заголовки */
+            --grey: #6B7280;       /* Текст */
+            --pink: #FA2F6B;       /* Акцент 1 */
+            --blue: #2463EB;       /* Акцент 2 */
+            --sky: #6AC2EA;        /* Доп. акцент */
+            --bg-body: #F9FAFB;    /* Фон */
+            --bg-card: #FFFFFF;    /* Плашки */
+
+            /* Backgrounds for boxes */
+            --bg-blue-muted: #C9D7F5;
+            --bg-pink-muted: #F9CCDB;
+
+            /* Styles */
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+            --radius: 16px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: var(--bg-body);
+            color: var(--grey);
+            line-height: 1.65;
+            padding: 24px 16px;
+            font-weight: 400;
+        }
+
+        strong { color: var(--dark); font-weight: 700; }
+
+        .container { max-width: 760px; margin: 0 auto; }
+
+        /* HEADER */
+        .header {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 40px;
+            margin-bottom: 32px;
+            box-shadow: var(--shadow);
+            border-top: 6px solid var(--blue);
+            text-align: center;
+        }
+        .header-pre { color: var(--sky); text-transform: uppercase; font-size: 13px; font-weight: 700; letter-spacing: 1px; margin-bottom: 12px; }
+        .header-title { font-size: 32px; line-height: 1.2; color: var(--dark); font-weight: 700; margin-bottom: 16px; }
+        .header-sub { font-size: 18px; color: var(--grey); font-weight: 400; }
+
+        .tags { display: flex; justify-content: center; gap: 8px; margin-top: 24px; flex-wrap: wrap; }
+        .tag { background: #EEF4FF; color: var(--blue); padding: 4px 12px; border-radius: 100px; font-size: 13px; font-weight: 500; }
+
+        /* SECTIONS */
+        .section {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: transform 0.2s ease;
+        }
+        .section:hover { transform: translateY(-2px); }
+
+        .section-header {
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            border-bottom: 1px solid transparent;
+        }
+        .section.collapsed .section-header { border-bottom: none; }
+
+        .section-icon {
+            width: 44px; height: 44px;
+            background: #EEF4FF;
+            color: var(--dark);
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 22px;
+            margin-right: 16px;
+            flex-shrink: 0;
+        }
+
+        .section-title { font-size: 20px; font-weight: 700; color: var(--dark); flex: 1; margin: 0; }
+        .section-toggle {
+            width: 24px; height: 24px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--grey);
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+        .section.collapsed .section-toggle { transform: rotate(-90deg); }
+
+        .section-content {
+            padding: 0 24px 32px 24px;
+            color: var(--grey);
+            font-size: 16px;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+        }
+        .section.collapsed .section-content { max-height: 0 !important; padding-bottom: 0; }
+
+        /* CONTENT BLOCKS */
+        p { margin-bottom: 16px; }
+        ul, ol { margin-bottom: 24px; padding-left: 24px; }
+        li { margin-bottom: 8px; }
+
+        /* The "Pink" Box - предупреждения, ошибки, важное */
+        .box-pink {
+            background: var(--bg-pink-muted);
+            padding: 24px;
+            border-radius: 12px;
+            margin: 24px 0;
+            border-left: 4px solid var(--pink);
+        }
+        .box-pink h4 { color: var(--dark); margin: 0 0 8px 0; font-size: 16px; display: flex; align-items: center; gap: 8px; }
+        .box-pink h4::before { content: '⚡'; }
+        .box-pink p:last-child { margin-bottom: 0; }
+
+        /* The "Blue" Box - инсайты, кейсы, приёмы */
+        .box-blue {
+            background: var(--bg-blue-muted);
+            padding: 24px;
+            border-radius: 12px;
+            margin: 24px 0;
+            border-left: 4px solid var(--blue);
+        }
+        .box-blue h4 { color: var(--dark); margin: 0 0 8px 0; font-size: 16px; display: flex; align-items: center; gap: 8px; }
+        .box-blue h4::before { content: '💎'; }
+        .box-blue p:last-child { margin-bottom: 0; }
+
+        /* Quote */
+        .quote {
+            font-size: 18px;
+            font-style: italic;
+            color: var(--dark);
+            border-left: 4px solid var(--sky);
+            padding-left: 20px;
+            margin: 32px 0;
+        }
+        .quote-author { font-size: 14px; color: var(--grey); font-style: normal; margin-top: 8px; font-weight: 500; }
+
+        /* Stats Grid */
+        .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; margin: 24px 0; }
+        .stat-card { background: var(--bg-body); border-radius: 12px; padding: 16px; text-align: center; border: 1px solid #E5E7EB; }
+        .stat-val { font-size: 28px; font-weight: 700; color: var(--blue); line-height: 1.1; margin-bottom: 4px; }
+        .stat-lbl { font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; color: var(--grey); }
+
+        /* CHECKLIST */
+        .checklist {
+            background: var(--bg-card);
+            padding: 32px;
+            border-radius: var(--radius);
+            margin-top: 40px;
+            box-shadow: var(--shadow);
+            border: 2px solid var(--bg-blue-muted);
+        }
+        .chk-header { flex: 1; }
+        .chk-title { font-size: 24px; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
+        .chk-desc { font-size: 14px; margin-bottom: 24px; }
+
+        .chk-group-title {
+            font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--pink); font-weight: 700;
+            margin: 24px 0 12px 0;
+        }
+
+        .chk-item {
+            display: flex; gap: 16px; padding: 12px 0;
+            border-bottom: 1px solid #F3F4F6; cursor: pointer;
+            transition: all 0.2s;
+        }
+        .chk-item:hover { opacity: 0.8; }
+        .chk-item:last-of-type { border-bottom: none; }
+
+        .checkbox {
+            width: 22px; height: 22px;
+            border: 2px solid var(--grey); border-radius: 6px;
+            flex-shrink: 0; margin-top: 2px; position: relative;
+            transition: all 0.2s;
+        }
+        .chk-item.checked .checkbox { background: var(--blue); border-color: var(--blue); }
+        .chk-item.checked .checkbox::after {
+            content: ''; position: absolute; left: 6px; top: 2px; width: 5px; height: 10px;
+            border: solid white; border-width: 0 2px 2px 0; transform: rotate(45deg);
+        }
+        .chk-text strong { display: block; font-size: 15px; color: var(--dark); transition: color 0.2s; }
+        .chk-item.checked .chk-text strong { color: var(--grey); text-decoration: line-through; }
+        .chk-text span { font-size: 13px; color: var(--grey); }
+
+        /* Progress (добавляется скриптом) */
+        .chk-progress { margin-top: 24px; }
+        .chk-progress-track { height: 6px; background: #F3F4F6; border-radius: 3px; overflow: hidden; }
+        .chk-progress-fill { width: 0%; height: 100%; background: var(--blue); transition: width 0.3s; }
+        .chk-progress-label { font-size: 13px; color: var(--grey); margin-top: 8px; text-align: right; font-weight: 500; }
+
+        /* Footer */
+        .footer { text-align: center; padding: 40px 0; margin-top: 20px; border-top: 1px solid #E5E7EB; }
+        .footer-time { background: var(--bg-card); display: inline-block; padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 500; color: var(--dark); border: 1px solid #E5E7EB; }
+        .footer-cta {
+            display: inline-block;
+            background: var(--blue); color: #FFFFFF;
+            font-weight: 700; font-size: 16px;
+            padding: 14px 28px; border-radius: 100px;
+            text-decoration: none;
+            margin: 8px 0 16px 0;
+            box-shadow: var(--shadow);
+            transition: background 0.2s, transform 0.2s;
+        }
+        .footer-cta:hover { background: var(--pink); transform: translateY(-1px); }
+        .footer-brand { font-size: 14px; color: var(--grey); }
+        .footer-brand a { color: var(--blue); font-weight: 700; text-decoration: none; }
+        .footer-brand a:hover { color: var(--pink); }
+
+        @media (max-width: 600px) {
+            .header { padding: 24px; text-align: left; }
+            .header-title { font-size: 24px; }
+            .tags { justify-content: flex-start; }
+            .section-header { padding: 16px; }
+            .section-icon { width: 36px; height: 36px; font-size: 18px; margin-right: 12px; }
+            .section-content { padding: 0 16px 24px 16px; }
+            .checklist { padding: 24px 16px; }
+        }
+
+        @media print {
+            body { background: #FFFFFF; padding: 0; }
+            .header, .section, .checklist { box-shadow: none; border: 1px solid #E5E7EB; }
+            .section { break-inside: avoid; }
+            .section:hover { transform: none; }
+            .section-content { max-height: none !important; padding: 0 24px 24px 24px !important; }
+            .section-toggle, .chk-progress, .footer-cta { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+<header class="header">
+  <div class="header-pre">Интерактивный конспект</div>
+  <h1 class="header-title">Как Китай стал Китаем: история названий и формирование нации</h1>
+  <div class="header-sub">От древних племен до современного государства: лингвистические и исторические корни китайской идентичности.</div>
+  <div class="tags"><span class="tag">#ИсторияКитая</span><span class="tag">#Лингвистика</span><span class="tag">#Этногенез</span><span class="tag">#География</span><span class="tag">#Неолит</span></div>
+</header>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">⚡</div>
+    <h2 class="section-title">Суть за 30 секунд</h2>
+  </div>
+  <div class="section-content">
+    <ul>
+      <li><strong>Названия «Китай» и «China» имеют разные корни:</strong> «Китай» происходит от монголоязычного племени киданей X века, а «China» — от империи Цинь III века до н.э. Оба названия закрепились в разных языках из-за особенностей формирования государственности и языковых реформ.</li>
+      <li><strong>Китайцы называют себя «Джунго-жень»</strong> (люди Срединного государства), а этническое большинство — ханьцы. При этом законодательно запрещено называть себя ханьцами, чтобы подчеркнуть единство многонационального государства.</li>
+      <li><strong>Первые люди на территории Китая появились 1,8 млн лет назад,</strong> это были Homo erectus. К 40 тысячам лет до н.э. сформировался монголоидный тип человека, вероятно, в результате смешения с другими популяциями.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">🗣️</div>
+    <h2 class="section-title">Почему «Китай»? Русское название и формирование государственности</h2>
+  </div>
+  <div class="section-content">
+    <p>Название «Китай» для русского языка происходит от монголоязычного племени <strong>киданей (кидани)</strong>, которые в X веке захватили огромные территории на севере современного Китая и создали империю Ляо. По Великому Шелковому пути это название достигло Руси, трансформировавшись в «Кытай».</p>
+    <div class="box-blue"><h4>Закрепление названия в русском языке</h4><p>В X веке, когда формировалась русская государственность (Киевская Русь), возникла потребность в определении «своих» и «чужих». В этот период кидани были самым могущественным государством на востоке, о котором доходили сведения. Поэтому их название закрепилось за всей восточной страной, несмотря на последующую смену династий и народов.</p></div>
+    <p>Это было связано с <strong>формированием единой государственной идентичности</strong>: «мы — русичи, а там, далеко на востоке, — Китай». Название стало устойчивым и не менялось, даже когда на территории Китая правили другие династии, такие как Сун, Юань или Мин.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">🔑</div>
+    <h2 class="section-title">Почему «China»? Латинские корни и английская реформа</h2>
+  </div>
+  <div class="section-content">
+    <p>Европейское название «China» имеет другой источник. В III веке до нашей эры на всей территории Китая возникла империя <strong>Цинь (Qín)</strong>. Это государство, хотя и просуществовало недолго, стало известно на Западе через Великий Шелковый путь. В латинской транскрипции название звучало как «Sina» или «Cina».</p>
+    <div class="quote">«Там далеко на востоке есть Шина государство. Шина. Понятно, да? И так и закрепилось. Там Шина. По-французски до сих пор осталось. Ля Шин в Китае называется. Ля Шин. Французский ближе всех к латыни. Произношение сохранилось».</div>
+    <p>В английском языке произошло уникальное фонетическое изменение в Средние века: латинская буква «I» в открытом слоге стала читаться как «Ай». Так «Sina» превратилась в <strong>«China»</strong>. Это название закрепилось благодаря активной колониальной политике Великобритании с XVII века, когда английский язык стал языком международного общения.</p>
+    <div class="box-pink"><h4>Загадка английской фонетики</h4><p>Причины, по которым латинская «I» стала читаться как «Ай» в открытом слоге английского языка, до сих пор не до конца понятны и являются предметом изучения историков языка.</p></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">🧠</div>
+    <h2 class="section-title">Как называют себя сами китайцы: «Джунго-жень» и ханьцы</h2>
+  </div>
+  <div class="section-content">
+    <p>Сами китайцы называют себя <strong>«Джунго-жень» (Zhōngguó rén)</strong>, что означает «люди Срединного государства». Это общее название для всех граждан Китая.</p>
+    <p>Этническое большинство Китая — <strong>ханьцы (Hànzú)</strong>, составляющие более 1,2 миллиарда человек. Однако, начиная с коммунистической эпохи Мао Цзэдуна, законодательно запрещено называть себя ханьцами в официальном контексте.</p>
+    <div class="box-blue"><h4>Политика национального единства</h4><p>Запрет на самоидентификацию как «ханьцы» направлен на сплочение многонационального государства. Идея состоит в том, что все народы Китая — «братья», где ханьцы являются «старшим братом», заботящимся о младших, а младшие должны беспрекословно подчиняться. Это способствует формированию единой национальной идентичности «Джунго-жень».</p></div>
+    <p>На практике, эта политика приводит к <strong>переселению ханьцев в регионы малых народов</strong> (например, в Синьцзян-Уйгурский автономный район) и унификации образования на путунхуа (мандаринском диалекте), что постепенно ассимилирует малые этносы.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">🌎</div>
+    <h2 class="section-title">Первые люди на территории Китая: Homo erectus и монголоиды</h2>
+  </div>
+  <div class="section-content">
+    <p>Первые следы присутствия человека на территории Китая датируются <strong>1,8 миллиона лет назад</strong>. Это были <strong>Homo erectus</strong> (человек прямоходящий), которые, предположительно, пришли из Африки.</p>
+    <p>Среди наиболее известных находок Homo erectus в Китае:</p>
+    <ul>
+      <li><strong>Лантяньский человек</strong> (1963 г., провинция Шэньси).</li>
+      <li><strong>Юньсяньский человек</strong> (провинция Хубэй).</li>
+      <li><strong>Чжоукоудяньский человек</strong>, также известный как <strong>пекинский человек (Homo pekinensis)</strong> или <strong>синантроп</strong>. Это первая и наиболее изученная находка Homo erectus в Китае, обнаруженная недалеко от Пекина. Синантропы умели пользоваться огнем и охотились на крупных животных, что свидетельствует о высоком уровне организации.</li>
+    </ul>
+    <p>К <strong>40 тысячам лет до нашей эры</strong> на территории Китая сформировался человек современного типа, который уже был <strong>монголоидом</strong>, причем большая часть — южными монголоидами (аустрического типа, как вьетнамцы или тайцы). Это, вероятно, произошло в результате смешения с другими, пока неизвестными, популяциями.</p>
+    <div class="stats">
+      <div class="stat-card"><div class="stat-val">1,8 млн</div><div class="stat-lbl">лет назад: первые люди в Китае</div></div>
+      <div class="stat-card"><div class="stat-val">40 тыс.</div><div class="stat-lbl">лет назад: монголоидный тип</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">⚙️</div>
+    <h2 class="section-title">География и климат: влияние Гималаев</h2>
+  </div>
+  <div class="section-content">
+    <p>Около <strong>1,5 миллиона лет назад</strong> индийская литосферная плита начала двигаться на север и сталкиваться с евразийской плитой. Это столкновение привело к образованию <strong>Гималаев</strong> и Тибетского нагорья.</p>
+    <div class="box-blue"><h4>Муссонный климат</h4><p>Гималаи сыграли ключевую роль в формировании климата Китая, отсекая муссоны. Это привело к образованию резко континентального климата с суровыми зимами и жарким летом в центральных и северных регионах, что отличает его от мягкого климата Юго-Восточной Азии.</p></div>
+    <p>Интенсивный рост гор продолжался до 150-200 тысяч лет до нашей эры. Этот процесс, хотя и замедлился, продолжается и сегодня, оказывая влияние на геологию и климат региона.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">🧩</div>
+    <h2 class="section-title">Проблема неолита в Китае: две точки зрения</h2>
+  </div>
+  <div class="section-content">
+    <p>Существуют две основные точки зрения на начало неолитической революции в Китае:</p>
+    <ol>
+      <li><strong>IX тысячелетие до н.э.:</strong> Эта датировка основана на находках ранней керамики. Археологи часто используют наличие обожженной глины как признак неолита, поскольку это указывает на производящее хозяйство.</li>
+      <li><strong>V тысячелетие до н.э.:</strong> Эта точка зрения, которой придерживается автор, основывается на появлении <strong>окультуренных зерен растений и костей одомашненных животных</strong>. Неолитическая революция определяется как переход от присваивающего хозяйства (охота, собирательство) к производящему (земледелие и скотоводство).</li>
+    </ol>
+    <div class="quote">«Я лично в дискуссии когда ведется, я говорю: „Ну в керамике можно дикорастущие из лаки, можно готовить?“ Почему нет? В керамике можно диких животных, которых ты получил в результате охоты, готовить? Да. А вот до пятого тысячелетия на территории Китая не обнаруживается окультуренных зерен растений и костей одомашненных животных. Они появляются только с пятого».</div>
+    <p>В отличие от других регионов мира, в Китае <strong>орудия труда палеолита не претерпевали значительной эволюции</strong> из-за отсутствия подходящего камня. Каменные и деревянные орудия оставались основными вплоть до конца бронзового века, что затрудняет периодизацию по этому признаку.</p>
+  </div>
+</section>
+
+<div class="checklist">
+  <div class="chk-header">
+    <div class="chk-title">🚀 Чек-лист внедрения</div>
+    <div class="chk-desc">Отмечайте выполненное — прогресс сохранится при следующем открытии файла</div>
+  </div>
+  <div class="chk-group-title">Прямо сейчас</div>
+  <div class="chk-item"><div class="chk-text"><strong>Запомнить корни названий «Китай» и «China»</strong><span>Понимать, что «Китай» — от киданей (X в.), «China» — от Цинь (III в. до н.э.).</span></div></div>
+  <div class="chk-item"><div class="chk-text"><strong>Осознать разницу в самоназвании китайцев</strong><span>«Джунго-жень» — общее, «ханьцы» — этническое, с законодательными ограничениями.</span></div></div>
+  <div class="chk-item"><div class="chk-text"><strong>Зафиксировать дату появления первых людей в Китае</strong><span>1,8 млн лет назад, Homo erectus (синантропы).</span></div></div>
+  <div class="chk-group-title">На этой неделе</div>
+  <div class="chk-item"><div class="chk-text"><strong>Изучить влияние географии на историю Китая</strong><span>Особое внимание уделить роли Гималаев в формировании климата и изоляции.</span></div></div>
+  <div class="chk-item"><div class="chk-text"><strong>Разобраться в дискуссии о начале неолита</strong><span>Понять аргументы в пользу IX и V тысячелетий до н.э.</span></div></div>
+  <div class="chk-group-title">На перспективу</div>
+  <div class="chk-item"><div class="chk-text"><strong>Прочитать первый том «Истории Китая» под ред. Деревянко</strong><span>Для глубокого изучения антропологии и палеолита Китая.</span></div></div>
+  <div class="chk-item"><div class="chk-text"><strong>Развивать навыки владения английским языком</strong><span>Как языком международного общения, особенно для тех, кто планирует научную или бизнес-карьеру.</span></div></div>
+</div>
+
+        <footer class="footer">
+            <div style="margin-bottom: 16px;">
+                <span class="footer-time">🎬 84 мин видео → 📖 ~7 мин чтения</span>
+            </div>
+            <a class="footer-cta" href="https://t.me/BukvitsaAI_bot?start=1129100159" target="_blank" rel="noopener">Сделать конспект своего видео →</a>
+            <div class="footer-brand">Создано в <a href="https://t.me/BukvitsaAI_bot?start=1129100159" target="_blank" rel="noopener">«Буквице»</a></div>
+        </footer>
+    </div>
+
+    <script>
+    (function () {
+        function all(sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
+
+        /* --- Служебные элементы: модель их не генерирует, добавляем сами --- */
+        all('.section-header').forEach(function (h) {
+            if (!h.querySelector('.section-toggle')) {
+                var t = document.createElement('div');
+                t.className = 'section-toggle';
+                t.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>';
+                h.appendChild(t);
+            }
+        });
+        all('.chk-item').forEach(function (i) {
+            if (!i.querySelector('.checkbox')) {
+                var c = document.createElement('div');
+                c.className = 'checkbox';
+                i.insertBefore(c, i.firstChild);
+            }
+        });
+
+        var checklist = document.querySelector('.checklist');
+        var fill = null, label = null;
+        if (checklist && all('.chk-item').length) {
+            var wrap = document.createElement('div');
+            wrap.className = 'chk-progress';
+            wrap.innerHTML = '<div class="chk-progress-track"><div class="chk-progress-fill"></div></div><div class="chk-progress-label"></div>';
+            checklist.appendChild(wrap);
+            fill = wrap.querySelector('.chk-progress-fill');
+            label = wrap.querySelector('.chk-progress-label');
+        }
+
+        /* --- Сохранение прогресса чек-листа между открытиями файла --- */
+        var titleEl = document.querySelector('.header-title');
+        var KEY = 'bukvitsa:' + (titleEl ? titleEl.textContent : document.title).trim().toLowerCase().replace(/\s+/g, '-').slice(0, 80);
+
+        function updateProgress() {
+            var items = all('.chk-item');
+            var done = items.filter(function (i) { return i.classList.contains('checked'); }).length;
+            if (fill) fill.style.width = (items.length ? Math.round(done / items.length * 100) : 0) + '%';
+            if (label) label.textContent = done + ' из ' + items.length;
+        }
+        function saveState() {
+            try {
+                var checked = [];
+                all('.chk-item').forEach(function (it, idx) { if (it.classList.contains('checked')) checked.push(idx); });
+                localStorage.setItem(KEY, JSON.stringify(checked));
+            } catch (e) { /* приватный режим и т.п. */ }
+        }
+        try {
+            var saved = JSON.parse(localStorage.getItem(KEY) || '[]');
+            all('.chk-item').forEach(function (it, idx) { if (saved.indexOf(idx) !== -1) it.classList.add('checked'); });
+        } catch (e) { /* игнорируем повреждённые данные */ }
+        updateProgress();
+
+        /* --- Клики: делегирование, никаких onclick в разметке --- */
+        document.addEventListener('click', function (e) {
+            var target = e.target;
+            var item = target.closest ? target.closest('.chk-item') : null;
+            if (item) {
+                item.classList.toggle('checked');
+                saveState();
+                updateProgress();
+                return;
+            }
+            var head = target.closest ? target.closest('.section-header') : null;
+            if (head) {
+                var sec = head.closest('.section');
+                var content = sec.querySelector('.section-content');
+                sec.classList.toggle('collapsed');
+                if (sec.classList.contains('collapsed')) {
+                    content.style.maxHeight = '';
+                } else {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                }
+            }
+        });
+
+        /* --- Высоты секций для анимации сворачивания --- */
+        function initHeights() {
+            all('.section:not(.collapsed) .section-content').forEach(function (el) {
+                el.style.maxHeight = el.scrollHeight + 'px';
+            });
+        }
+        window.addEventListener('load', initHeights);
+        window.addEventListener('resize', initHeights);
+        initHeights();
+    })();
+    </script>
+</body>
+</html>
