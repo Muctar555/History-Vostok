@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light">
+    <title>Рождение империи через террор: от Ассирии до мировых держав</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* БУКВИЦА BRAND STYLES v4.0 */
+        :root {
+            color-scheme: light;
+            /* Palette */
+            --dark: #101827;       /* Заголовки */
+            --grey: #6B7280;       /* Текст */
+            --pink: #FA2F6B;       /* Акцент 1 */
+            --blue: #2463EB;       /* Акцент 2 */
+            --sky: #6AC2EA;        /* Доп. акцент */
+            --bg-body: #F9FAFB;    /* Фон */
+            --bg-card: #FFFFFF;    /* Плашки */
+
+            /* Backgrounds for boxes */
+            --bg-blue-muted: #C9D7F5;
+            --bg-pink-muted: #F9CCDB;
+
+            /* Styles */
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+            --radius: 16px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: var(--bg-body);
+            color: var(--grey);
+            line-height: 1.65;
+            padding: 24px 16px;
+            font-weight: 400;
+        }
+
+        strong { color: var(--dark); font-weight: 700; }
+
+        .container { max-width: 760px; margin: 0 auto; }
+
+        /* HEADER */
+        .header {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 40px;
+            margin-bottom: 32px;
+            box-shadow: var(--shadow);
+            border-top: 6px solid var(--blue);
+            text-align: center;
+        }
+        .header-pre { color: var(--sky); text-transform: uppercase; font-size: 13px; font-weight: 700; letter-spacing: 1px; margin-bottom: 12px; }
+        .header-title { font-size: 32px; line-height: 1.2; color: var(--dark); font-weight: 700; margin-bottom: 16px; }
+        .header-sub { font-size: 18px; color: var(--grey); font-weight: 400; }
+
+        .tags { display: flex; justify-content: center; gap: 8px; margin-top: 24px; flex-wrap: wrap; }
+        .tag { background: #EEF4FF; color: var(--blue); padding: 4px 12px; border-radius: 100px; font-size: 13px; font-weight: 500; }
+
+        /* SECTIONS */
+        .section {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: transform 0.2s ease;
+        }
+        .section:hover { transform: translateY(-2px); }
+
+        .section-header {
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            border-bottom: 1px solid transparent;
+        }
+        .section.collapsed .section-header { border-bottom: none; }
+
+        .section-icon {
+            width: 44px; height: 44px;
+            background: #EEF4FF;
+            color: var(--dark);
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 22px;
+            margin-right: 16px;
+            flex-shrink: 0;
+        }
+
+        .section-title { font-size: 20px; font-weight: 700; color: var(--dark); flex: 1; margin: 0; }
+        .section-toggle {
+            width: 24px; height: 24px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--grey);
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+        .section.collapsed .section-toggle { transform: rotate(-90deg); }
+
+        .section-content {
+            padding: 0 24px 32px 24px;
+            color: var(--grey);
+            font-size: 16px;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+        }
+        .section.collapsed .section-content { max-height: 0 !important; padding-bottom: 0; }
+
+        /* CONTENT BLOCKS */
+        p { margin-bottom: 16px; }
+        ul, ol { margin-bottom: 24px; padding-left: 24px; }
+        li { margin-bottom: 8px; }
+
+        /* The "Pink" Box - предупреждения, ошибки, важное */
+        .box-pink {
+            background: var(--bg-pink-muted);
+            padding: 24px;
+            border-radius: 12px;
+            margin: 24px 0;
+            border-left: 4px solid var(--pink);
+        }
+        .box-pink h4 { color: var(--dark); margin: 0 0 8px 0; font-size: 16px; display: flex; align-items: center; gap: 8px; }
+        .box-pink h4::before { content: '⚡'; }
+        .box-pink p:last-child { margin-bottom: 0; }
+
+        /* The "Blue" Box - инсайты, кейсы, приёмы */
+        .box-blue {
+            background: var(--bg-blue-muted);
+            padding: 24px;
+            border-radius: 12px;
+            margin: 24px 0;
+            border-left: 4px solid var(--blue);
+        }
+        .box-blue h4 { color: var(--dark); margin: 0 0 8px 0; font-size: 16px; display: flex; align-items: center; gap: 8px; }
+        .box-blue h4::before { content: '💎'; }
+        .box-blue p:last-child { margin-bottom: 0; }
+
+        /* Quote */
+        .quote {
+            font-size: 18px;
+            font-style: italic;
+            color: var(--dark);
+            border-left: 4px solid var(--sky);
+            padding-left: 20px;
+            margin: 32px 0;
+        }
+        .quote-author { font-size: 14px; color: var(--grey); font-style: normal; margin-top: 8px; font-weight: 500; }
+
+        /* Stats Grid */
+        .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; margin: 24px 0; }
+        .stat-card { background: var(--bg-body); border-radius: 12px; padding: 16px; text-align: center; border: 1px solid #E5E7EB; }
+        .stat-val { font-size: 28px; font-weight: 700; color: var(--blue); line-height: 1.1; margin-bottom: 4px; }
+        .stat-lbl { font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; color: var(--grey); }
+
+        /* CHECKLIST */
+        .checklist {
+            background: var(--bg-card);
+            padding: 32px;
+            border-radius: var(--radius);
+            margin-top: 40px;
+            box-shadow: var(--shadow);
+            border: 2px solid var(--bg-blue-muted);
+        }
+        .chk-header { flex: 1; }
+        .chk-title { font-size: 24px; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
+        .chk-desc { font-size: 14px; margin-bottom: 24px; }
+
+        .chk-group-title {
+            font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--pink); font-weight: 700;
+            margin: 24px 0 12px 0;
+        }
+
+        .chk-item {
+            display: flex; gap: 16px; padding: 12px 0;
+            border-bottom: 1px solid #F3F4F6; cursor: pointer;
+            transition: all 0.2s;
+        }
+        .chk-item:hover { opacity: 0.8; }
+        .chk-item:last-of-type { border-bottom: none; }
+
+        .checkbox {
+            width: 22px; height: 22px;
+            border: 2px solid var(--grey); border-radius: 6px;
+            flex-shrink: 0; margin-top: 2px; position: relative;
+            transition: all 0.2s;
+        }
+        .chk-item.checked .checkbox { background: var(--blue); border-color: var(--blue); }
+        .chk-item.checked .checkbox::after {
+            content: ''; position: absolute; left: 6px; top: 2px; width: 5px; height: 10px;
+            border: solid white; border-width: 0 2px 2px 0; transform: rotate(45deg);
+        }
+        .chk-text strong { display: block; font-size: 15px; color: var(--dark); transition: color 0.2s; }
+        .chk-item.checked .chk-text strong { color: var(--grey); text-decoration: line-through; }
+        .chk-text span { font-size: 13px; color: var(--grey); }
+
+        /* Progress (добавляется скриптом) */
+        .chk-progress { margin-top: 24px; }
+        .chk-progress-track { height: 6px; background: #F3F4F6; border-radius: 3px; overflow: hidden; }
+        .chk-progress-fill { width: 0%; height: 100%; background: var(--blue); transition: width 0.3s; }
+        .chk-progress-label { font-size: 13px; color: var(--grey); margin-top: 8px; text-align: right; font-weight: 500; }
+
+        /* Footer */
+        .footer { text-align: center; padding: 40px 0; margin-top: 20px; border-top: 1px solid #E5E7EB; }
+        .footer-time { background: var(--bg-card); display: inline-block; padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 500; color: var(--dark); border: 1px solid #E5E7EB; }
+        .footer-cta {
+            display: inline-block;
+            background: var(--blue); color: #FFFFFF;
+            font-weight: 700; font-size: 16px;
+            padding: 14px 28px; border-radius: 100px;
+            text-decoration: none;
+            margin: 8px 0 16px 0;
+            box-shadow: var(--shadow);
+            transition: background 0.2s, transform 0.2s;
+        }
+        .footer-cta:hover { background: var(--pink); transform: translateY(-1px); }
+        .footer-brand { font-size: 14px; color: var(--grey); }
+        .footer-brand a { color: var(--blue); font-weight: 700; text-decoration: none; }
+        .footer-brand a:hover { color: var(--pink); }
+
+        @media (max-width: 600px) {
+            .header { padding: 24px; text-align: left; }
+            .header-title { font-size: 24px; }
+            .tags { justify-content: flex-start; }
+            .section-header { padding: 16px; }
+            .section-icon { width: 36px; height: 36px; font-size: 18px; margin-right: 12px; }
+            .section-content { padding: 0 16px 24px 16px; }
+            .checklist { padding: 24px 16px; }
+        }
+
+        @media print {
+            body { background: #FFFFFF; padding: 0; }
+            .header, .section, .checklist { box-shadow: none; border: 1px solid #E5E7EB; }
+            .section { break-inside: avoid; }
+            .section:hover { transform: none; }
+            .section-content { max-height: none !important; padding: 0 24px 24px 24px !important; }
+            .section-toggle, .chk-progress, .footer-cta { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+<header class="header">
+  <div class="header-pre">Интерактивный конспект</div>
+  <h1 class="header-title">Рождение империи через террор: от Ассирии до мировых держав</h1>
+  <div class="header-sub">Как насилие формирует государства, плавильные котлы этногенеза создают народы, а падение сильной власти ввергает цивилизации в вековой хаос</div>
+  <div class="tags"><span class="tag">#ДревнийВосток</span><span class="tag">#Ассирия</span><span class="tag">#ИсторияГосударства</span><span class="tag">#Этногенез</span><span class="tag">#Политология</span></div>
+</header>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">⚡</div>
+    <h2 class="section-title">Суть за 30 секунд</h2>
+  </div>
+  <div class="section-content">
+    <ul>
+      <li><strong>Государство рождается и удерживается насилием:</strong> ни одна историческая система не объединялась мирным путём; распад любой структуры неизбежно ведёт к войне, а выход из кризиса исторически всегда оплачивался жесточайшей централизацией.</li>
+      <li><strong>Ассирийцы — результат длительного смешения культур:</strong> на базе шумеро-аккадского фундамента через волны хуритских и аморейских миграций сформировался новый этнос с жёсткой идеологией имперского господства и правом на грабёж соседей.</li>
+      <li><strong>Свержение сильного тирана порождает катастрофу:</strong> гибель правителя Тукульти-Нинурты I от рук недовольной знати отбросила Ассирию в вековую смуту, доказав, что для общества внутренняя анархия и распад институтов всегда губительнее любой диктатуры.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">⚙️</div>
+    <h2 class="section-title">Генезис власти: неизбежность насилия при создании империй</h2>
+  </div>
+  <div class="section-content">
+    <p>Любое историческое объединение общества происходило исключительно через принуждение. Идея мирной консолидации — историческая иллюзия: ни одной цивилизации за тысячи лет не удалось построить устойчивое централизованное управление по принципу добровольного согласия.</p>
+    <p>Древнее Междуречье служит наглядной лабораторией генезиса власти. Переход от первобытной общины и совета старейшин к институту военного вождя (лугаля) происходил в бесконечных войнах номов. Лугальзагеси достиг высшей мыслимой на тот момент точки — статуса гегемона, однако дальнейшая централизация требовала совершенно нового взгляда на мироустройство, которого древние правители попросту не имели в своём понятийном аппарате.</p>
+    <div class="quote">«Как мы с вами знаем, только грубым насилием можно объединить общество, по-другому никак. Ни у кого ни разу не получилось за всю историю».</div>
+    <div class="box-pink">
+      <h4>Логика распада государств</h4>
+      <p>Распад любой государственной системы всегда оборачивается полномасштабными военными конфликтами, территориальными потерями и переделом зон влияния. Выход из исторического штопора никогда не происходит мягко: централизация власти исторически опиралась на подавление внутренних противоречий силой государственного аппарата.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">🧩</div>
+    <h2 class="section-title">Семитский этногенез: три ветви и расселение народов</h2>
+  </div>
+  <div class="section-content">
+    <p>Афразийская языковая семья исторически разделилась на три основные ветви: кушитскую (Судан), египетскую (растворившуюся в ходе последующих завоеваний) и семитскую. Семитская общность, в свою очередь, дала три мощных направления, определивших карту Передней Азии:</p>
+    <ul>
+      <li><strong>Восточные семиты (аккадцы):</strong> ушли в Месопотамию, ассимилировались с коренным населением (шумерами) и сформировали единую культуру «черноголовых».</li>
+      <li><strong>Западные семиты (амореи):</strong> консолидировались во времена Третьей династии Ура, сокрушили её и расселились по городам Месопотамии (Хамурапи — яркий представитель аморейской знати). Позже были выдавлены хуритами и касситами обратно в сиро-палестинский регион.</li>
+      <li><strong>Южные семиты (арамеи):</strong> кочевые племена пустыни, предки современных бедуинов и арабов. После ухода амореев они начали мощную экспансию на север и восток, оказывая постоянное давление на границы земледельческих цивилизаций.</li>
+    </ul>
+    <p>Каждое новое племенное вторжение не уничтожало предшественников полностью, а создавало слоёный культурный пирог, из которого спустя столетия кристаллизовались новые народы.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">🧠</div>
+    <h2 class="section-title">«Сварившийся народ»: как город Ашшур породил ассирийцев</h2>
+  </div>
+  <div class="section-content">
+    <p>Ассирийцы не появились на исторической арене как готовый монолитный этнос. Изначально Ашшур времён Аккадской династии был второстепенным перевалочным пунктом и мелким торговым поселением на периферии Шумеро-Аккадского мира. На протяжении сотен лет здесь варился этнический «коктейль»:</p>
+    <ul>
+      <li>Шумеро-аккадский субстрат (городское торгово-ремесленное ядро);</li>
+      <li>Хуритский компонент (массовые миграции северных соседей);</li>
+      <li>Аморейские завоеватели (захват власти династией Шамши-Адада I в XIX веке до н. э.).</li>
+    </ul>
+    <p>К 1365 году до н. э. этот процесс завершился. Правитель <strong>Ашшур-убаллит I</strong> впервые официально декларировал рождение новой геополитической силы формулой: <em>«Я — царь Ассирии»</em>. Возник единый народ, выработавший идеологию собственного безоговорочного превосходства над окружающими племенами.</p>
+    <div class="box-blue">
+      <h4>Универсальный закон растворения родовой памяти</h4>
+      <p>Наличие сильного централизованного государства с институтом царской службы быстро стирает родоплеменную память. Подданным империи неважно, кем были их предки — вятичами или кривичами, шумерами или аккадцами: служение аппарату власти нивелирует различия. Народы же, не создавшие собственной государственности, сохраняют клановую и родовую память веками.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">📈</div>
+    <h2 class="section-title">Военная машина и государственная экономика грабежа</h2>
+  </div>
+  <div class="section-content">
+    <p>В эпоху Среднеассирийского царства правители перешли от защиты торговых путей к систематической территориальной экспансии. Царь <strong>Адад-нирари I</strong> (1307–1275 гг. до н. э.), скромно именовавший себя «царём обитаемого мира», начал теснить касситов и нанёс серию сокрушительных ударов по государству Митанни.</p>
+    <p>Его преемник <strong>Салманасар I</strong> (1274–1245 гг. до н. э.) окончательно разгромил хуритское царство Митанни, несмотря на то что за хуритов вступились хетты и воинственные арамейские племена. Война для Ассирии стала главным экономическим механизмом: армия содержалась государством на постоянной основе, ополчение привлекалось в дополнение, а целью каждого похода являлось обогащение метрополии.</p>
+    <div class="quote">«Все войны ведутся с целью грабежа, с целью увеличения ресурсов. Это главная цель. Там еще бывает политическое влияние. А риторика может быть разная».</div>
+    <p>Окружающие цивилизации объявлялись ресурсом. Если идеология древних евреев или шанского Китая объясняла истребление соседей божественным заветом верховного божества, то ассирийцы вели войну цинично и прямолинейно — ради земель, сырья и бесплатной рабочей силы.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">⚠️</div>
+    <h2 class="section-title">Анатомия террора: ослепление пленных и индустрия страха</h2>
+  </div>
+  <div class="section-content">
+    <p>Чтобы заставить человека идти под стрелы и убивать себе подобных, государству требуется целенаправленно «отключать тумблер» инстинкта самосохранения. Ассирийцы первыми возвели психологическую войну и демонстративную жестокость в ранг государственной политики.</p>
+    
+    <div class="stats">
+      <div class="stat-card">
+        <div class="stat-val">14 400</div>
+        <div class="stat-lbl">пленных ослеплены по приказу Салманасара I</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val">28 800</div>
+        <div class="stat-lbl">хеттских воинов угнаны в рабство Тукульти-Нинуртой I</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val">1223 г.</div>
+        <div class="stat-lbl">до н. э. — падение Вавилона под ударом Ассирии</div>
+      </div>
+    </div>
+
+    <p>Разгромив хуритов, Салманасар I распорядился ослепить четырнадцать с половиной тысяч пленных. Это было не эмоциональной вспышкой, а холодным прагматичным расчётом:</p>
+    <ul>
+      <li><strong>Экономия на конвое:</strong> слепой человек не может поднять восстание или убежать через пустыню;</li>
+      <li><strong>Сохранение рабочей силы:</strong> пленные способны крутить водоподъёмные колёса, молоть зерно, бурлачить баржи и дробить камень в рудниках;</li>
+      <li><strong>Парализующий ужас:</strong> вести об ослеплениях и пирамидах из тел заставляли гарнизоны соседних городов сдаваться без боя при одном виде ассирийских штандартов.</li>
+    </ul>
+    <div class="box-pink">
+      <h4>Цена тотального насилия</h4>
+      <p>Культивация абсолютной жестокости даёт быстрый тактический результат, но закладывает мину замедленного действия. Всепоглощающая ненависть всех покорённых народов в конечном счёте объединила врагов Ассирии и привела цивилизацию к полному физическому уничтожению в VII веке до н. э.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">🔑</div>
+    <h2 class="section-title">Тукульти-Нинурта I: архивное знание и амбиции гегемонии</h2>
+  </div>
+  <div class="section-content">
+    <p>Наивысшего могущества в Среднеассирийский период держава достигла при <strong>Тукульти-Нинурте I</strong> (1244–1208 гг. до н. э.). Он подчинил горные племена Уруатри и Наири, нанёс сокрушительное поражение хеттам и в 1223 году до н. э. взял Вавилон, свергнув касситскую династию.</p>
+    <p>Царь оставил грандиозную титулатуру: <em>«Царь Ассирии, царь Кардуниаша, царь Шумера и Аккада, царь Верхнего и Нижнего моря, царь Дильмуна и Мелуххи...»</em>. Несмотря на очевидные преувеличения (Мелуххой называли далёкую Индию), титул представлял собой чёткую имперскую программу максимальной экспансии.</p>
+    <div class="box-blue">
+      <h4>Историческое открытие: ассирийский ренессанс древней клинописи</h4>
+      <p>Титул «царь Шумера и Аккада» не использовался в Междуречье около 400 лет — с эпохи Хаммурапи весь регион назывался исключительно Вавилонией. Появление этого термина в титуле Тукульти-Нинурты I свидетельствует: образованная ассирийская элита систематически читала и исследовала древние глиняные таблички задолго до создания знаменитой библиотеки Ашшурбанипала, черпая из архивов легитимацию своей власти.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">📌</div>
+    <h2 class="section-title">Цена свержения тирана: вековой паралич империи</h2>
+  </div>
+  <div class="section-content">
+    <p>Абсолютная концентрация власти, успехи завоеваний и колоссальная военная добыча не защитили монарха от внутренней оппозиции. Ассирийская знать и сыновья царя, уставшие от авторитарного давления, составили заговор: Тукульти-Нинурту объявили сумасшедшим и убили во дворце.</p>
+    <p>Правящей верхушке казалось, что ликвидация деспота вернёт им былые вольности и влияние. Однако устранение единого стержня власти привело к классическому сценарию смуты:</p>
+    <ul>
+      <li>Все завоёванные провинции, включая богатейший Вавилон, моментально отпали;</li>
+      <li>Внутренние междоусобицы и клановая резня выкосили значительную часть национальной элиты;</li>
+      <li>Ассирия вылетела из высшей лиги древней геополитики почти на сто лет — вплоть до прихода Тиглатпаласара I в 1115 году до н. э.</li>
+    </ul>
+    <p>Историческая аналогия безупречна: свержение Ивана Грозного боярством открыло Смутное время, когда под угрозу было поставлено само выживание страны. В борьбе между жёсткой автократией и бессистемным олигархическим хаосом история раз за разом показывает, что внутренняя смута обходится народу несоизмеримо дороже любого тиранического режима.</p>
+  </div>
+</section>
+
+<div class="checklist">
+  <div class="chk-header">
+    <div class="chk-title">🎯 Главные выводы</div>
+    <div class="chk-desc">Отмечайте то, что берёте себе на заметку</div>
+  </div>
+  <div class="chk-group-title">Механика государства и власти</div>
+  <div class="chk-item"><div class="chk-text"><strong>Насилие — базовый фундамент централизации</strong><span>История не знает примеров прочного объединения разрозненных обществ исключительно мирными призывами.</span></div></div>
+  <div class="chk-item"><div class="chk-text"><strong>Смута всегда разрушительнее тирании</strong><span>Устранение жёсткого лидера без института преемственности повергает социум в десятилетия кровавого регресса.</span></div></div>
+  <div class="chk-item"><div class="chk-text"><strong>Государственная служба стирает родовые границы</strong><span>Единые имперские институты ускоряют слияние племён в единую гражданскую или национальную общность.</span></div></div>
+  <div class="chk-group-title">Законы геополитики и войны</div>
+  <div class="chk-item"><div class="chk-text"><strong>Реальный мотив любой войны — ресурсы</strong><span>Идеологические, религиозные или цивилизационные лозунги служат лишь прикрытием борьбы за территории, богатства и торговые пути.</span></div></div>
+  <div class="chk-item"><div class="chk-text"><strong>Военная машина требует подавления биоинстинктов</strong><span>Способность социума побеждать в войне опирается на воспитание готовности рисковать жизнью вопреки инстинкту самосохранения.</span></div></div>
+  <div class="chk-item"><div class="chk-text"><strong>Террор даёт быстрый эффект, но гарантирует крах</strong><span>Подавление страхом ломает сопротивление здесь и сейчас, но аккумулирует тотальную ненависть, уничтожающую державу на исторической дистанции.</span></div></div>
+  <div class="chk-group-title">Историческое мышление</div>
+  <div class="chk-item"><div class="chk-text"><strong>Преемственность ищется через архивы</strong><span>Элиты обращаются к древним текстам и забытым титулам для легитимации претензий на мировое господство.</span></div></div>
+  <div class="chk-item"><div class="chk-text"><strong>Широкий востоковедный кругозор снимает шовинизм</strong><span>Глубокое изучение чужих культур, языков и логики развития цивилизаций вытесняет узкий национализм и высокомерие.</span></div></div>
+</div>
+
+        <footer class="footer">
+            <div style="margin-bottom: 16px;">
+                <span class="footer-time">🎬 83 мин видео → 📖 ~9 мин чтения</span>
+            </div>
+            <a class="footer-cta" href="https://t.me/BukvitsaAI_bot?start=1129100159" target="_blank" rel="noopener">Сделать конспект своего видео →</a>
+            <div class="footer-brand">Создано в <a href="https://t.me/BukvitsaAI_bot?start=1129100159" target="_blank" rel="noopener">«Буквице»</a></div>
+        </footer>
+    </div>
+
+    <script>
+    (function () {
+        function all(sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
+
+        /* --- Служебные элементы: модель их не генерирует, добавляем сами --- */
+        all('.section-header').forEach(function (h) {
+            if (!h.querySelector('.section-toggle')) {
+                var t = document.createElement('div');
+                t.className = 'section-toggle';
+                t.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>';
+                h.appendChild(t);
+            }
+        });
+        all('.chk-item').forEach(function (i) {
+            if (!i.querySelector('.checkbox')) {
+                var c = document.createElement('div');
+                c.className = 'checkbox';
+                i.insertBefore(c, i.firstChild);
+            }
+        });
+
+        var checklist = document.querySelector('.checklist');
+        var fill = null, label = null;
+        if (checklist && all('.chk-item').length) {
+            var wrap = document.createElement('div');
+            wrap.className = 'chk-progress';
+            wrap.innerHTML = '<div class="chk-progress-track"><div class="chk-progress-fill"></div></div><div class="chk-progress-label"></div>';
+            checklist.appendChild(wrap);
+            fill = wrap.querySelector('.chk-progress-fill');
+            label = wrap.querySelector('.chk-progress-label');
+        }
+
+        /* --- Сохранение прогресса чек-листа между открытиями файла --- */
+        var titleEl = document.querySelector('.header-title');
+        var KEY = 'bukvitsa:' + (titleEl ? titleEl.textContent : document.title).trim().toLowerCase().replace(/\s+/g, '-').slice(0, 80);
+
+        function updateProgress() {
+            var items = all('.chk-item');
+            var done = items.filter(function (i) { return i.classList.contains('checked'); }).length;
+            if (fill) fill.style.width = (items.length ? Math.round(done / items.length * 100) : 0) + '%';
+            if (label) label.textContent = done + ' из ' + items.length;
+        }
+        function saveState() {
+            try {
+                var checked = [];
+                all('.chk-item').forEach(function (it, idx) { if (it.classList.contains('checked')) checked.push(idx); });
+                localStorage.setItem(KEY, JSON.stringify(checked));
+            } catch (e) { /* приватный режим и т.п. */ }
+        }
+        try {
+            var saved = JSON.parse(localStorage.getItem(KEY) || '[]');
+            all('.chk-item').forEach(function (it, idx) { if (saved.indexOf(idx) !== -1) it.classList.add('checked'); });
+        } catch (e) { /* игнорируем повреждённые данные */ }
+        updateProgress();
+
+        /* --- Клики: делегирование, никаких onclick в разметке --- */
+        document.addEventListener('click', function (e) {
+            var target = e.target;
+            var item = target.closest ? target.closest('.chk-item') : null;
+            if (item) {
+                item.classList.toggle('checked');
+                saveState();
+                updateProgress();
+                return;
+            }
+            var head = target.closest ? target.closest('.section-header') : null;
+            if (head) {
+                var sec = head.closest('.section');
+                var content = sec.querySelector('.section-content');
+                sec.classList.toggle('collapsed');
+                if (sec.classList.contains('collapsed')) {
+                    content.style.maxHeight = '';
+                } else {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                }
+            }
+        });
+
+        /* --- Высоты секций для анимации сворачивания --- */
+        function initHeights() {
+            all('.section:not(.collapsed) .section-content').forEach(function (el) {
+                el.style.maxHeight = el.scrollHeight + 'px';
+            });
+        }
+        window.addEventListener('load', initHeights);
+        window.addEventListener('resize', initHeights);
+        initHeights();
+    })();
+    </script>
+</body>
+</html>
