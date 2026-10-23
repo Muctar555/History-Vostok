@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light">
+    <title>Регионализация: обособление, которое перекраивает карту мира</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* БУКВИЦА BRAND STYLES v4.0 */
+        :root {
+            color-scheme: light;
+            /* Palette */
+            --dark: #101827;       /* Заголовки */
+            --grey: #6B7280;       /* Текст */
+            --pink: #FA2F6B;       /* Акцент 1 */
+            --blue: #2463EB;       /* Акцент 2 */
+            --sky: #6AC2EA;        /* Доп. акцент */
+            --bg-body: #F9FAFB;    /* Фон */
+            --bg-card: #FFFFFF;    /* Плашки */
+
+            /* Backgrounds for boxes */
+            --bg-blue-muted: #C9D7F5;
+            --bg-pink-muted: #F9CCDB;
+
+            /* Styles */
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+            --radius: 16px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: var(--bg-body);
+            color: var(--grey);
+            line-height: 1.65;
+            padding: 24px 16px;
+            font-weight: 400;
+        }
+
+        strong { color: var(--dark); font-weight: 700; }
+
+        .container { max-width: 760px; margin: 0 auto; }
+
+        /* HEADER */
+        .header {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 40px;
+            margin-bottom: 32px;
+            box-shadow: var(--shadow);
+            border-top: 6px solid var(--blue);
+            text-align: center;
+        }
+        .header-pre { color: var(--sky); text-transform: uppercase; font-size: 13px; font-weight: 700; letter-spacing: 1px; margin-bottom: 12px; }
+        .header-title { font-size: 32px; line-height: 1.2; color: var(--dark); font-weight: 700; margin-bottom: 16px; }
+        .header-sub { font-size: 18px; color: var(--grey); font-weight: 400; }
+
+        .tags { display: flex; justify-content: center; gap: 8px; margin-top: 24px; flex-wrap: wrap; }
+        .tag { background: #EEF4FF; color: var(--blue); padding: 4px 12px; border-radius: 100px; font-size: 13px; font-weight: 500; }
+
+        /* SECTIONS */
+        .section {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: transform 0.2s ease;
+        }
+        .section:hover { transform: translateY(-2px); }
+
+        .section-header {
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            border-bottom: 1px solid transparent;
+        }
+        .section.collapsed .section-header { border-bottom: none; }
+
+        .section-icon {
+            width: 44px; height: 44px;
+            background: #EEF4FF;
+            color: var(--dark);
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 22px;
+            margin-right: 16px;
+            flex-shrink: 0;
+        }
+
+        .section-title { font-size: 20px; font-weight: 700; color: var(--dark); flex: 1; margin: 0; }
+        .section-toggle {
+            width: 24px; height: 24px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--grey);
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+        .section.collapsed .section-toggle { transform: rotate(-90deg); }
+
+        .section-content {
+            padding: 0 24px 32px 24px;
+            color: var(--grey);
+            font-size: 16px;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+        }
+        .section.collapsed .section-content { max-height: 0 !important; padding-bottom: 0; }
+
+        /* CONTENT BLOCKS */
+        p { margin-bottom: 16px; }
+        ul, ol { margin-bottom: 24px; padding-left: 24px; }
+        li { margin-bottom: 8px; }
+
+        /* The "Pink" Box - предупреждения, ошибки, важное */
+        .box-pink {
+            background: var(--bg-pink-muted);
+            padding: 24px;
+            border-radius: 12px;
+            margin: 24px 0;
+            border-left: 4px solid var(--pink);
+        }
+        .box-pink h4 { color: var(--dark); margin: 0 0 8px 0; font-size: 16px; display: flex; align-items: center; gap: 8px; }
+        .box-pink h4::before { content: '⚡'; }
+        .box-pink p:last-child { margin-bottom: 0; }
+
+        /* The "Blue" Box - инсайты, кейсы, приёмы */
+        .box-blue {
+            background: var(--bg-blue-muted);
+            padding: 24px;
+            border-radius: 12px;
+            margin: 24px 0;
+            border-left: 4px solid var(--blue);
+        }
+        .box-blue h4 { color: var(--dark); margin: 0 0 8px 0; font-size: 16px; display: flex; align-items: center; gap: 8px; }
+        .box-blue h4::before { content: '💎'; }
+        .box-blue p:last-child { margin-bottom: 0; }
+
+        /* Quote */
+        .quote {
+            font-size: 18px;
+            font-style: italic;
+            color: var(--dark);
+            border-left: 4px solid var(--sky);
+            padding-left: 20px;
+            margin: 32px 0;
+        }
+        .quote-author { font-size: 14px; color: var(--grey); font-style: normal; margin-top: 8px; font-weight: 500; }
+
+        /* Stats Grid */
+        .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; margin: 24px 0; }
+        .stat-card { background: var(--bg-body); border-radius: 12px; padding: 16px; text-align: center; border: 1px solid #E5E7EB; }
+        .stat-val { font-size: 28px; font-weight: 700; color: var(--blue); line-height: 1.1; margin-bottom: 4px; }
+        .stat-lbl { font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; color: var(--grey); }
+
+        /* CHECKLIST */
+        .checklist {
+            background: var(--bg-card);
+            padding: 32px;
+            border-radius: var(--radius);
+            margin-top: 40px;
+            box-shadow: var(--shadow);
+            border: 2px solid var(--bg-blue-muted);
+        }
+        .chk-header { flex: 1; }
+        .chk-title { font-size: 24px; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
+        .chk-desc { font-size: 14px; margin-bottom: 24px; }
+
+        .chk-group-title {
+            font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--pink); font-weight: 700;
+            margin: 24px 0 12px 0;
+        }
+
+        .chk-item {
+            display: flex; gap: 16px; padding: 12px 0;
+            border-bottom: 1px solid #F3F4F6; cursor: pointer;
+            transition: all 0.2s;
+        }
+        .chk-item:hover { opacity: 0.8; }
+        .chk-item:last-of-type { border-bottom: none; }
+
+        .checkbox {
+            width: 22px; height: 22px;
+            border: 2px solid var(--grey); border-radius: 6px;
+            flex-shrink: 0; margin-top: 2px; position: relative;
+            transition: all 0.2s;
+        }
+        .chk-item.checked .checkbox { background: var(--blue); border-color: var(--blue); }
+        .chk-item.checked .checkbox::after {
+            content: ''; position: absolute; left: 6px; top: 2px; width: 5px; height: 10px;
+            border: solid white; border-width: 0 2px 2px 0; transform: rotate(45deg);
+        }
+        .chk-text strong { display: block; font-size: 15px; color: var(--dark); transition: color 0.2s; }
+        .chk-item.checked .chk-text strong { color: var(--grey); text-decoration: line-through; }
+        .chk-text span { font-size: 13px; color: var(--grey); }
+
+        /* Progress (добавляется скриптом) */
+        .chk-progress { margin-top: 24px; }
+        .chk-progress-track { height: 6px; background: #F3F4F6; border-radius: 3px; overflow: hidden; }
+        .chk-progress-fill { width: 0%; height: 100%; background: var(--blue); transition: width 0.3s; }
+        .chk-progress-label { font-size: 13px; color: var(--grey); margin-top: 8px; text-align: right; font-weight: 500; }
+
+        /* Footer */
+        .footer { text-align: center; padding: 40px 0; margin-top: 20px; border-top: 1px solid #E5E7EB; }
+        .footer-time { background: var(--bg-card); display: inline-block; padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 500; color: var(--dark); border: 1px solid #E5E7EB; }
+        .footer-cta {
+            display: inline-block;
+            background: var(--blue); color: #FFFFFF;
+            font-weight: 700; font-size: 16px;
+            padding: 14px 28px; border-radius: 100px;
+            text-decoration: none;
+            margin: 8px 0 16px 0;
+            box-shadow: var(--shadow);
+            transition: background 0.2s, transform 0.2s;
+        }
+        .footer-cta:hover { background: var(--pink); transform: translateY(-1px); }
+        .footer-brand { font-size: 14px; color: var(--grey); }
+        .footer-brand a { color: var(--blue); font-weight: 700; text-decoration: none; }
+        .footer-brand a:hover { color: var(--pink); }
+
+        @media (max-width: 600px) {
+            .header { padding: 24px; text-align: left; }
+            .header-title { font-size: 24px; }
+            .tags { justify-content: flex-start; }
+            .section-header { padding: 16px; }
+            .section-icon { width: 36px; height: 36px; font-size: 18px; margin-right: 12px; }
+            .section-content { padding: 0 16px 24px 16px; }
+            .checklist { padding: 24px 16px; }
+        }
+
+        @media print {
+            body { background: #FFFFFF; padding: 0; }
+            .header, .section, .checklist { box-shadow: none; border: 1px solid #E5E7EB; }
+            .section { break-inside: avoid; }
+            .section:hover { transform: none; }
+            .section-content { max-height: none !important; padding: 0 24px 24px 24px !important; }
+            .section-toggle, .chk-progress, .footer-cta { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+<header class="header">
+  <div class="header-pre">Интерактивный конспект</div>
+  <h1 class="header-title">Регионализация: обособление, которое перекраивает карту мира</h1>
+  <div class="header-sub">География задаёт рамку, экономика задаёт мотив, а политика и культура лишь оформляют результат</div>
+  <div class="tags"><span class="tag">#Регионализация</span><span class="tag">#Геоэкономика</span><span class="tag">#ИмперскаяПолитика</span><span class="tag">#Конфуцианство</span><span class="tag">#Арктика</span></div>
+</header>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">⚡</div>
+    <h2 class="section-title">Суть за 30 секунд</h2>
+  </div>
+  <div class="section-content">
+    <ul>
+      <li><strong>Регионализация — это обособление, а не только интеграция.</strong> Выделение территории по общим природным, экономическим, историческим, культурным или политическим признакам идёт и внутри государств, и на международном уровне.</li>
+      <li><strong>Первичен географический фактор, а в основе всех остальных лежит экономика.</strong> Политические и культурные механизмы лишь надстраиваются над экономическим интересом той или иной силы.</li>
+      <li><strong>Современная геополитика подчинена геоэкономике.</strong> Санкции, концессии и торговые маршруты объясняют поведение государств точнее, чем декларации о ценностях.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">🧩</div>
+    <h2 class="section-title">Регионализация — это выделение, а не только сближение</h2>
+  </div>
+  <div class="section-content">
+    <p>Термин часто путают с интеграцией, специализацией или централизацией, но суть его проще и жёстче: <strong>выделение территории и её обособление</strong>. Преподаватель подвёл группу к этому через саму аудиторию: студенты рассаживаются по рациональным мотивам — поближе к доске, к знакомому месту, он сам по старой привычке занимает «Камчатку», потому что там комфортнее. Любой выбор локации по определённым основаниям — уже регионализация.</p>
+    <p>Процесс идёт на двух уровнях. Внутри государства — через административно-территориальное деление и региональную политику. На международном — через экономическую интеграцию, межгосударственные объединения и укрепление связей между странами одной части мира. При этом у процесса есть и обратная сторона: усиление экономического неравенства между регионами и сепаратистские настроения.</p>
+    <div class="quote">«По своей сущности регионализация — это обособление в конкретной территории»<div class="quote-author">— Преподаватель</div></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">📌</div>
+    <h2 class="section-title">Семь факторов, которые запускают обособление</h2>
+  </div>
+  <div class="section-content">
+    <p>Главная причина регионализации — <strong>неоднородность территории</strong>: части мира и отдельные государства различаются природой, уровнем экономики, населением, культурой и историей. Доклад на занятии разложил её на семь факторов:</p>
+    <ol>
+      <li><strong>Природно-географический</strong> — положение, климат, рельеф, ресурсы. Территории с нефтью и газом специализируются на добыче, регионы с плодородными почвами — на сельском хозяйстве.</li>
+      <li><strong>Экономический</strong> — специализация, доходы, обеспеченность рабочей силой; соседние территории объединяют усилия ради инфраструктуры, производства и торговли.</li>
+      <li><strong>Исторический</strong> — прежние границы, торговые пути, общее прошлое, формирующее идентичность.</li>
+      <li><strong>Культурный</strong> — язык, религия, традиции, национальный состав; пример — национальные республики вроде Бурятии и Дагестана.</li>
+      <li><strong>Политический</strong> — потребность в эффективном управлении, распределении полномочий, учёте местных интересов; на международном уровне — объединения вроде Европейского союза.</li>
+      <li><strong>Демографический</strong> — плотность и возрастная структура населения, образование, занятость, миграция.</li>
+      <li><strong>Транспорт и связи</strong> — инфраструктура и информационные технологии укрепляют взаимодействие в торговле, науке, образовании, туризме.</li>
+    </ol>
+    <div class="box-pink"><h4>Обратная сторона процесса</h4><p>Кроме эффективного использования ресурсов, развития местной экономики и сохранения традиций регионализация даёт усиление неравенства между регионами и сепаратистские настроения — обособление легко переходит из экономической плоскости в политическую.</p></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">🔑</div>
+    <h2 class="section-title">Почему география первична, а история опирается на экономику</h2>
+  </div>
+  <div class="section-content">
+    <p>Географический фактор стоит первым, потому что он <strong>объективен</strong>: Уральские горы делят материк на Европу и Азию независимо от того, признаём мы это деление или нет. Заданность параметров континентов и регионов остаётся неизменной — меняются лишь конфигурации, связанные с геополитическими и геоэкономическими процессами. Так же строились и школьные контурные карты: сначала материки, потом климатические зоны, и только затем политическая карта с границами.</p>
+    <p>Исторический фактор выглядит самостоятельным, но опирается на экономику. В разобранной на занятии модели народы с технологиями и кораблями приплывают к новым берегам — и первое, что они выясняют, это наличие ресурсов, населения, его вооружения и опасности. <strong>Первый мотив обособления — расширить сферу влияния и получить ресурсы</strong>, и лишь потом в ход идут политика и культура.</p>
+    <div class="stats">
+      <div class="stat-card"><div class="stat-val">7 факторов</div><div class="stat-lbl">Базовые основания регионализации</div></div>
+      <div class="stat-card"><div class="stat-val">2 см в год</div><div class="stat-lbl">С такой скоростью смещаются материки — но система координат остаётся</div></div>
+      <div class="stat-card"><div class="stat-val">100 лет</div><div class="stat-lbl">Концессия на нефтяные залежи Венесуэлы, одобренная её правительством</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">⚙️</div>
+    <h2 class="section-title">Как империя привязывает территорию: экономика → политика → культура</h2>
+  </div>
+  <div class="section-content">
+    <p>На занятии разобрали механику на игровой модели. Сначала местное население воспринимает пришельцев как угрозу и обособляется. Затем империя действует политически: находит среди местных самого влиятельного, поддерживает его силой и оружием, а он собирает налоги со своих же — в обмен на технологии и покровительство. Дальше включается тонкая работа: недовольных подговаривают, лидера смещают, ставленник выстраивает поставки.</p>
+    <p>Финальный и самый прочный слой — <strong>культурная ассимиляция</strong>: лидера убеждают, что он «свой», проводник имперской культуры, его детей отправляют учиться в метрополию. Человек начинает отстаивать не локальные, а имперские интересы — служить империи становится выгоднее, чем быть против неё.</p>
+    <p>Студентка спросила, не проще ли сразу поставить лояльное правительство — быстрее и эффективнее. Ответ: такие случаи были, но это разные горизонты планирования.</p>
+    <div class="box-blue"><h4>Тактика и стратегия</h4><p>Быстрая замена власти — тактика. Имперская стратегия рассчитана на десятилетия: она воспитывает проводников, которые сами транслируют имперские идеи через культуру и образование.</p></div>
+    <div class="quote">«Это тактика. А тот пример, который мы сейчас с вами разобрали, — это стратегия»<div class="quote-author">— Преподаватель</div></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">🗣️</div>
+    <h2 class="section-title">Культурная дипломатия и религия как инструмент</h2>
+  </div>
+  <div class="section-content">
+    <p>Советский Союз был империей, и имперскую политику он проводил в том числе через культурную дипломатию — развитие международных отношений и расширение влияния. Личный пример преподавателя: в 1991 году, когда Союз распался, ему было десять лет, он рос в маленькой деревне со школой до четырёх классов — и всё равно пришёл к маме с вопросом, как Прибалтика будет жить без «нас». Имперское мышление, привитое системой образования, добралось до самого глухого угла.</p>
+    <div class="quote">«Я прихожу к маме и говорю: „А как они будут жить без нас?“»<div class="quote-author">— Преподаватель</div></div>
+    <p><strong>Религия — самостоятельный фактор регионализации.</strong> Буддийский регион объединяет очень разные страны, а внутри России центром буддизма считается Санкт-Петербург и Ленинградская область: там буддизм официально признали при империи, построили дацан, открыли Институт восточных рукописей с собранием буддийских текстов. А Российская империя использовала буддизм как механизм включения азиатских народов — в первую очередь калмыков, самых западных монголов — в общую имперскую гражданственность.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">💡</div>
+    <h2 class="section-title">Конфуцианство: философия, которая работала как государство</h2>
+  </div>
+  <div class="section-content">
+    <p>Доклад студента был посвящён Конфуцию (около 551–479 гг. до н. э.), который учил независимо от происхождения учеников и, по преданию, собрал более 500 последователей. Каркас учения — категории: <strong>жень</strong> (человеколюбие, «не делай другим того, чего не желаешь себе»), <strong>ли</strong> (ритуал и благопристойность, где внешняя форма воспитывает внутреннее содержание), <strong>сяо</strong> (почтительность к родителям, семья как основа общества) и <strong>цзюньцзы</strong> — благородный муж, которого делают нравственность и образованность, а не происхождение.</p>
+    <p>Дальше — история института: при Цинь (221 г. до н. э.) книги конфуцианцев сжигали, при Хань (II в. до н. э.) учение стало государственной идеологией, Чжу Си в XII веке обновил его в неоконфуцианство, а с 1605 по 1905 год экзамены на должность чиновника держались на знании канона.</p>
+    <p>Спор «религия или философия» преподаватель разрешил прагматично: с религией сближают храмы и ритуалы, но идеал благородного мужа сугубо социальный — значит, это философия.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">📈</div>
+    <h2 class="section-title">Россия: ресурсы, положение между Европой и Азией и Арктика</h2>
+  </div>
+  <div class="section-content">
+    <p>Геоэкономические козыри России — природные ресурсы (нефть, газ, уголь, металлы), развитый энергетический сектор, большой внутренний рынок и положение между Европой и Азией. Перспективы — торговля с Китаем и Индией, расширение транспортных коридоров и Северного морского пути, развитие промышленности и снижение зависимости от экспорта сырья. Проблемы — санкции, ограничение доступа к технологиям и сложности с международными расчётами.</p>
+    <p>Геополитически страна опирается на территорию, ядерный потенциал, место в Совете Безопасности ООН и участие в международных организациях; ставка — на БРИКС, многополярность и сохранение влияния на постсоветском пространстве.</p>
+    <div class="box-blue"><h4>Арктика как новый стратегический регион</h4><p>Путь через Арктику сокращает дорогу из Китая в Европу, здесь нет проливов под чужим контролем и сомалийских пиратов. Ограничения: расход ресурсов на проводку сквозь льды и зависимость от ледокольного флота, которым располагают только Россия и США — Китай в этой схеме оказывается заложником чужой инфраструктуры.</p></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">⚠️</div>
+    <h2 class="section-title">Геоэкономика подчиняет геополитику: Венесуэла, дизель, Монголия</h2>
+  </div>
+  <div class="section-content">
+    <p>Политика США в Венесуэле — учебный пример геоэкономики: президента увозят и судят в другой стране, а затем правительство Венесуэлы одобряет концессию на нефтяные залежи на 100 лет. Ничего нового не изобретено: контроль над ресурсом оформляется через лояльную власть.</p>
+    <p>Второй пример — снятие ограничений на покупку российского дизеля: американцам он нужен для тракторов и комбайнов, то есть для собственной продовольственной безопасности. Проигравшей оказывается Европа, которая продолжает соблюдать правила и страдает от нехватки нефти и газа. Геополитика здесь полностью обслуживает экономический интерес.</p>
+    <p>Отдельный кейс — Монголия: два соседа, нет выхода к морю, но есть «концепция третьего соседа» — политическая метафора, позволяющая уравновешивать влияние Китая и России. Само существование Монгольской народной республики — результат политики СССР, а признание Монголии Китаем входило в условия Ялтинской конференции.</p>
+    <div class="quote">«Современная геополитика полностью подчинена геоэкономике»<div class="quote-author">— Преподаватель</div></div>
+    <p>Общий вывод занятия: регионализация идёт постоянно, а карта мира выстраивается по тому, чьи интересы в конкретный момент побеждают.</p>
+  </div>
+</section>
+
+<div class="checklist">
+  <div class="chk-header">
+    <div class="chk-title">🎯 Главные выводы</div>
+    <div class="chk-desc">Отмечайте то, что берёте себе на заметку</div>
+  </div>
+  <div class="chk-group-title">Ключевые идеи</div>
+  <div class="chk-item"><div class="chk-text"><strong>Регионализация — это обособление, а не только интеграция</strong><span>Любое выделение территории по общим признакам уже относится к процессу, идёт ли речь о делении внутри страны или о международных объединениях</span></div></div>
+  <div class="chk-item"><div class="chk-text"><strong>Географический фактор первичен, потому что объективен</strong><span>Рельеф и границы материков не зависят от признания; меняются только конфигурации, созданные геополитикой и геоэкономикой</span></div></div>
+  <div class="chk-item"><div class="chk-text"><strong>В основе обособления лежит экономика</strong><span>Исторические, политические и культурные механизмы надстраиваются над интересом получить ресурсы, рынок или маршрут</span></div></div>
+  <div class="chk-item"><div class="chk-text"><strong>Имперская стратегия работает на десятилетия</strong><span>Лояльное правительство — тактика; устойчивый результат даёт ассимиляция через культуру и образование</span></div></div>
+  <div class="chk-item"><div class="chk-text"><strong>Религия — самостоятельный фактор регионализации</strong><span>Буддизм в Российской империи служил механизмом включения азиатских народов в имперскую гражданственность</span></div></div>
+  <div class="chk-group-title">Для анализа</div>
+  <div class="chk-item"><div class="chk-text"><strong>Различать в конфуцианстве философию и религию</strong><span>Храмы и ритуалы роднят его с религией, но идеал благородного мужа — социальный, а не сакральный</span></div></div>
+  <div class="chk-item"><div class="chk-text"><strong>Учитывать арктический маршрут в геоэкономических расчётах</strong><span>Короткий путь без проливов и пиратов, но дорогая проводка сквозь льды и зависимость от ледокольного флота двух стран</span></div></div>
+  <div class="chk-item"><div class="chk-text"><strong>Проверять геополитические заявления экономическими мотивами</strong><span>Снятие санкций ради дизеля и концессия на венесуэльскую нефть показательнее любых деклараций о ценностях</span></div></div>
+</div>
+
+        <footer class="footer">
+            <div style="margin-bottom: 16px;">
+                <span class="footer-time">🎬 73 мин видео → 📖 ~9 мин чтения</span>
+            </div>
+            <a class="footer-cta" href="https://t.me/BukvitsaAI_bot?start=1129100159" target="_blank" rel="noopener">Сделать конспект своего видео →</a>
+            <div class="footer-brand">Создано в <a href="https://t.me/BukvitsaAI_bot?start=1129100159" target="_blank" rel="noopener">«Буквице»</a></div>
+        </footer>
+    </div>
+
+    <script>
+    (function () {
+        function all(sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
+
+        /* --- Служебные элементы: модель их не генерирует, добавляем сами --- */
+        all('.section-header').forEach(function (h) {
+            if (!h.querySelector('.section-toggle')) {
+                var t = document.createElement('div');
+                t.className = 'section-toggle';
+                t.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>';
+                h.appendChild(t);
+            }
+        });
+        all('.chk-item').forEach(function (i) {
+            if (!i.querySelector('.checkbox')) {
+                var c = document.createElement('div');
+                c.className = 'checkbox';
+                i.insertBefore(c, i.firstChild);
+            }
+        });
+
+        var checklist = document.querySelector('.checklist');
+        var fill = null, label = null;
+        if (checklist && all('.chk-item').length) {
+            var wrap = document.createElement('div');
+            wrap.className = 'chk-progress';
+            wrap.innerHTML = '<div class="chk-progress-track"><div class="chk-progress-fill"></div></div><div class="chk-progress-label"></div>';
+            checklist.appendChild(wrap);
+            fill = wrap.querySelector('.chk-progress-fill');
+            label = wrap.querySelector('.chk-progress-label');
+        }
+
+        /* --- Сохранение прогресса чек-листа между открытиями файла --- */
+        var titleEl = document.querySelector('.header-title');
+        var KEY = 'bukvitsa:' + (titleEl ? titleEl.textContent : document.title).trim().toLowerCase().replace(/\s+/g, '-').slice(0, 80);
+
+        function updateProgress() {
+            var items = all('.chk-item');
+            var done = items.filter(function (i) { return i.classList.contains('checked'); }).length;
+            if (fill) fill.style.width = (items.length ? Math.round(done / items.length * 100) : 0) + '%';
+            if (label) label.textContent = done + ' из ' + items.length;
+        }
+        function saveState() {
+            try {
+                var checked = [];
+                all('.chk-item').forEach(function (it, idx) { if (it.classList.contains('checked')) checked.push(idx); });
+                localStorage.setItem(KEY, JSON.stringify(checked));
+            } catch (e) { /* приватный режим и т.п. */ }
+        }
+        try {
+            var saved = JSON.parse(localStorage.getItem(KEY) || '[]');
+            all('.chk-item').forEach(function (it, idx) { if (saved.indexOf(idx) !== -1) it.classList.add('checked'); });
+        } catch (e) { /* игнорируем повреждённые данные */ }
+        updateProgress();
+
+        /* --- Клики: делегирование, никаких onclick в разметке --- */
+        document.addEventListener('click', function (e) {
+            var target = e.target;
+            var item = target.closest ? target.closest('.chk-item') : null;
+            if (item) {
+                item.classList.toggle('checked');
+                saveState();
+                updateProgress();
+                return;
+            }
+            var head = target.closest ? target.closest('.section-header') : null;
+            if (head) {
+                var sec = head.closest('.section');
+                var content = sec.querySelector('.section-content');
+                sec.classList.toggle('collapsed');
+                if (sec.classList.contains('collapsed')) {
+                    content.style.maxHeight = '';
+                } else {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                }
+            }
+        });
+
+        /* --- Высоты секций для анимации сворачивания --- */
+        function initHeights() {
+            all('.section:not(.collapsed) .section-content').forEach(function (el) {
+                el.style.maxHeight = el.scrollHeight + 'px';
+            });
+        }
+        window.addEventListener('load', initHeights);
+        window.addEventListener('resize', initHeights);
+        initHeights();
+    })();
+    </script>
+</body>
+</html>
