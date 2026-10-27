@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light">
+    <title>Центр против элит: анатомия империи от Шумера до Ассирии</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* БУКВИЦА BRAND STYLES v4.0 */
+        :root {
+            color-scheme: light;
+            /* Palette */
+            --dark: #101827;       /* Заголовки */
+            --grey: #6B7280;       /* Текст */
+            --pink: #FA2F6B;       /* Акцент 1 */
+            --blue: #2463EB;       /* Акцент 2 */
+            --sky: #6AC2EA;        /* Доп. акцент */
+            --bg-body: #F9FAFB;    /* Фон */
+            --bg-card: #FFFFFF;    /* Плашки */
+
+            /* Backgrounds for boxes */
+            --bg-blue-muted: #C9D7F5;
+            --bg-pink-muted: #F9CCDB;
+
+            /* Styles */
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+            --radius: 16px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: var(--bg-body);
+            color: var(--grey);
+            line-height: 1.65;
+            padding: 24px 16px;
+            font-weight: 400;
+        }
+
+        strong { color: var(--dark); font-weight: 700; }
+
+        .container { max-width: 760px; margin: 0 auto; }
+
+        /* HEADER */
+        .header {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 40px;
+            margin-bottom: 32px;
+            box-shadow: var(--shadow);
+            border-top: 6px solid var(--blue);
+            text-align: center;
+        }
+        .header-pre { color: var(--sky); text-transform: uppercase; font-size: 13px; font-weight: 700; letter-spacing: 1px; margin-bottom: 12px; }
+        .header-title { font-size: 32px; line-height: 1.2; color: var(--dark); font-weight: 700; margin-bottom: 16px; }
+        .header-sub { font-size: 18px; color: var(--grey); font-weight: 400; }
+
+        .tags { display: flex; justify-content: center; gap: 8px; margin-top: 24px; flex-wrap: wrap; }
+        .tag { background: #EEF4FF; color: var(--blue); padding: 4px 12px; border-radius: 100px; font-size: 13px; font-weight: 500; }
+
+        /* SECTIONS */
+        .section {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: transform 0.2s ease;
+        }
+        .section:hover { transform: translateY(-2px); }
+
+        .section-header {
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            border-bottom: 1px solid transparent;
+        }
+        .section.collapsed .section-header { border-bottom: none; }
+
+        .section-icon {
+            width: 44px; height: 44px;
+            background: #EEF4FF;
+            color: var(--dark);
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 22px;
+            margin-right: 16px;
+            flex-shrink: 0;
+        }
+
+        .section-title { font-size: 20px; font-weight: 700; color: var(--dark); flex: 1; margin: 0; }
+        .section-toggle {
+            width: 24px; height: 24px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--grey);
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+        .section.collapsed .section-toggle { transform: rotate(-90deg); }
+
+        .section-content {
+            padding: 0 24px 32px 24px;
+            color: var(--grey);
+            font-size: 16px;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+        }
+        .section.collapsed .section-content { max-height: 0 !important; padding-bottom: 0; }
+
+        /* CONTENT BLOCKS */
+        p { margin-bottom: 16px; }
+        ul, ol { margin-bottom: 24px; padding-left: 24px; }
+        li { margin-bottom: 8px; }
+
+        /* The "Pink" Box - предупреждения, ошибки, важное */
+        .box-pink {
+            background: var(--bg-pink-muted);
+            padding: 24px;
+            border-radius: 12px;
+            margin: 24px 0;
+            border-left: 4px solid var(--pink);
+        }
+        .box-pink h4 { color: var(--dark); margin: 0 0 8px 0; font-size: 16px; display: flex; align-items: center; gap: 8px; }
+        .box-pink h4::before { content: '⚡'; }
+        .box-pink p:last-child { margin-bottom: 0; }
+
+        /* The "Blue" Box - инсайты, кейсы, приёмы */
+        .box-blue {
+            background: var(--bg-blue-muted);
+            padding: 24px;
+            border-radius: 12px;
+            margin: 24px 0;
+            border-left: 4px solid var(--blue);
+        }
+        .box-blue h4 { color: var(--dark); margin: 0 0 8px 0; font-size: 16px; display: flex; align-items: center; gap: 8px; }
+        .box-blue h4::before { content: '💎'; }
+        .box-blue p:last-child { margin-bottom: 0; }
+
+        /* Quote */
+        .quote {
+            font-size: 18px;
+            font-style: italic;
+            color: var(--dark);
+            border-left: 4px solid var(--sky);
+            padding-left: 20px;
+            margin: 32px 0;
+        }
+        .quote-author { font-size: 14px; color: var(--grey); font-style: normal; margin-top: 8px; font-weight: 500; }
+
+        /* Stats Grid */
+        .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; margin: 24px 0; }
+        .stat-card { background: var(--bg-body); border-radius: 12px; padding: 16px; text-align: center; border: 1px solid #E5E7EB; }
+        .stat-val { font-size: 28px; font-weight: 700; color: var(--blue); line-height: 1.1; margin-bottom: 4px; }
+        .stat-lbl { font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; color: var(--grey); }
+
+        /* CHECKLIST */
+        .checklist {
+            background: var(--bg-card);
+            padding: 32px;
+            border-radius: var(--radius);
+            margin-top: 40px;
+            box-shadow: var(--shadow);
+            border: 2px solid var(--bg-blue-muted);
+        }
+        .chk-header { flex: 1; }
+        .chk-title { font-size: 24px; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
+        .chk-desc { font-size: 14px; margin-bottom: 24px; }
+
+        .chk-group-title {
+            font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--pink); font-weight: 700;
+            margin: 24px 0 12px 0;
+        }
+
+        .chk-item {
+            display: flex; gap: 16px; padding: 12px 0;
+            border-bottom: 1px solid #F3F4F6; cursor: pointer;
+            transition: all 0.2s;
+        }
+        .chk-item:hover { opacity: 0.8; }
+        .chk-item:last-of-type { border-bottom: none; }
+
+        .checkbox {
+            width: 22px; height: 22px;
+            border: 2px solid var(--grey); border-radius: 6px;
+            flex-shrink: 0; margin-top: 2px; position: relative;
+            transition: all 0.2s;
+        }
+        .chk-item.checked .checkbox { background: var(--blue); border-color: var(--blue); }
+        .chk-item.checked .checkbox::after {
+            content: ''; position: absolute; left: 6px; top: 2px; width: 5px; height: 10px;
+            border: solid white; border-width: 0 2px 2px 0; transform: rotate(45deg);
+        }
+        .chk-text strong { display: block; font-size: 15px; color: var(--dark); transition: color 0.2s; }
+        .chk-item.checked .chk-text strong { color: var(--grey); text-decoration: line-through; }
+        .chk-text span { font-size: 13px; color: var(--grey); }
+
+        /* Progress (добавляется скриптом) */
+        .chk-progress { margin-top: 24px; }
+        .chk-progress-track { height: 6px; background: #F3F4F6; border-radius: 3px; overflow: hidden; }
+        .chk-progress-fill { width: 0%; height: 100%; background: var(--blue); transition: width 0.3s; }
+        .chk-progress-label { font-size: 13px; color: var(--grey); margin-top: 8px; text-align: right; font-weight: 500; }
+
+        /* Footer */
+        .footer { text-align: center; padding: 40px 0; margin-top: 20px; border-top: 1px solid #E5E7EB; }
+        .footer-time { background: var(--bg-card); display: inline-block; padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 500; color: var(--dark); border: 1px solid #E5E7EB; }
+        .footer-cta {
+            display: inline-block;
+            background: var(--blue); color: #FFFFFF;
+            font-weight: 700; font-size: 16px;
+            padding: 14px 28px; border-radius: 100px;
+            text-decoration: none;
+            margin: 8px 0 16px 0;
+            box-shadow: var(--shadow);
+            transition: background 0.2s, transform 0.2s;
+        }
+        .footer-cta:hover { background: var(--pink); transform: translateY(-1px); }
+        .footer-brand { font-size: 14px; color: var(--grey); }
+        .footer-brand a { color: var(--blue); font-weight: 700; text-decoration: none; }
+        .footer-brand a:hover { color: var(--pink); }
+
+        @media (max-width: 600px) {
+            .header { padding: 24px; text-align: left; }
+            .header-title { font-size: 24px; }
+            .tags { justify-content: flex-start; }
+            .section-header { padding: 16px; }
+            .section-icon { width: 36px; height: 36px; font-size: 18px; margin-right: 12px; }
+            .section-content { padding: 0 16px 24px 16px; }
+            .checklist { padding: 24px 16px; }
+        }
+
+        @media print {
+            body { background: #FFFFFF; padding: 0; }
+            .header, .section, .checklist { box-shadow: none; border: 1px solid #E5E7EB; }
+            .section { break-inside: avoid; }
+            .section:hover { transform: none; }
+            .section-content { max-height: none !important; padding: 0 24px 24px 24px !important; }
+            .section-toggle, .chk-progress, .footer-cta { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+<header class="header">
+  <div class="header-pre">Интерактивный конспект</div>
+  <h1 class="header-title">Центр против элит: анатомия империи от Шумера до Ассирии</h1>
+  <div class="header-sub">Власть всегда делит ресурсы, народы растворяются друг в друге, а жестокость собирает врагам союзников</div>
+  <div class="tags"><span class="tag">#ДревнийВосток</span><span class="tag">#Ассирия</span><span class="tag">#Государство</span><span class="tag">#Этногенез</span><span class="tag">#Политология</span></div>
+</header>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">⚡</div>
+    <h2 class="section-title">Суть за 30 секунд</h2>
+  </div>
+  <div class="section-content">
+    <ul>
+      <li><strong>Конфликт центра и элит — вечный и экономический.</strong> Центр хочет забирать как можно больше, периферия — отдавать как можно меньше. Личные мотивы и союзы лишь надстраиваются над этим интересом.</li>
+      <li><strong>Монолитная система побеждает в войне.</strong> Кто собрал ресурсы всей страны — людей, деньги, снабжение — тот и выиграл. Рыхлые союзы больших войн не выдерживают.</li>
+      <li><strong>Народы не вечны, а жестокость не окупается.</strong> Ассимиляция — способ выживания человечества, но террор Ассирии собрал против неё Урарту и Дамаск и увёл караваны в обход.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">🎯</div>
+    <h2 class="section-title">Вечный конфликт: центр против элит</h2>
+  </div>
+  <div class="section-content">
+    <p>За любым спором о власти стоит <strong>экономика</strong>. Центр хочет собирать с губерний и царств по тысяче, а то и по сто тысяч; периферия хочет оставлять у себя как можно больше. Это противоречие не отменяется ни личной преданностью, ни союзническими клятвами: союзник становится союзником в надежде на земли и доходы.</p>
+    <p>В Ассирии этот конфликт шёл внутри самого общества. Город вырос на переправе через Тигр и на торговле — значит, здесь сильна <strong>торговая элита</strong>, которой нужны караваны, гостиницы, конюшни и приезжие с деньгами. Но есть и <strong>военная элита</strong>, которая богатеет грабежом. Когда правитель перебил купцов и караваны пошли в обход, владельцы гостиниц и лавок начали разоряться: год нет гостей, второй, третий — и доходов нет.</p>
+    <div class="box-pink"><h4>Ошибка, которая стоит империй</h4><p>Игнорировать экономический интерес своей же элиты. Военная знать и торговый город хотят противоположного, и если власть кормит только одну сторону, вторая перестаёт быть опорой.</p></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">📈</div>
+    <h2 class="section-title">Почему монолит побеждает в войне</h2>
+  </div>
+  <div class="section-content">
+    <p>Война — дело дорогое: нужны люди, оружие, снабжение, а потери приходится восполнять. Поэтому выигрывает тот, кто может бросить на одну задачу <strong>ресурсы всей страны</strong>. Централизованная система даёт многочисленную армию, лучше вооружённую и лучше снабжённую. Рыхлая структура, где каждый сам за себя, ресурсов на большую войну не соберёт.</p>
+    <p>Хаммурапи действовал именно так: сначала подчинил соседние области и собрал их ресурсы, а уже потом разбил главного соперника. Побеждает не самый благородный, а тот, у кого больше возможностей — и в истории остаётся держава победителя, а не его соперников.</p>
+    <div class="quote">«Централизованные монолитные системы всегда выигрывают войны. Рыхлые структуры не способны выигрывать большие войны»<div class="quote-author">— Лектор</div></div>
+    <div class="box-blue"><h4>Приём Хаммурапи</h4><p>Не бей главного противника первым. Сначала подчини и присоедини более слабых соседей, собери их ресурсы — и только потом иди на сильного.</p></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">🧩</div>
+    <h2 class="section-title">Народы не вечны: ассимиляция как двигатель</h2>
+  </div>
+  <div class="section-content">
+    <p>Шумеры и аккадцы перемешались и стали «черноголовыми» — так они себя и называли. Потом добавились амореи, и появились <strong>вавилоняне</strong>. Касситы пришли в 1595 году, повоевали — и растворились без следа. Халдеи осели на юге и позже захватят власть в Вавилоне. Ассирийцы сложились из хуритов и амореев. Каждый раз новый народ возникал из смешения.</p>
+    <p>Китайцы — исключение не по природе, а по механике: они не растворяются, а растворяют других, втягивая всё новые группы в «хуася». По той же логике варится американский «компот» из Европы, Африки, Азии и Латинской Америки. Франция, по мысли лектора, свою политическую систему не удержала: миграция и демография запустили этническое замещение, и отменить его уже нельзя.</p>
+    <div class="quote">«Ассимиляция — это способ выживания человечества. Потому что только смешение даёт прогресс. Закрытые системы не развиваются»<div class="quote-author">— Лектор</div></div>
+    <div class="box-pink"><h4>Закрытая система деградирует</h4><p>Отказ от смешения выглядит как сохранение чистоты, а работает как отказ от обновления: популяция не получает новых комбинаций и со временем слабеет.</p></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">🔑</div>
+    <h2 class="section-title">Два инструмента централизации: вера и столица</h2>
+  </div>
+  <div class="section-content">
+    <p>Большому государству мешает <strong>культ предков</strong>: у каждого рода свои духи и свои боги, а значит, и своя база неподчинения — «у меня свои предки, зачем мне твои». Поэтому формирующееся государство принимает мировые религии: они выбивают почву из-под родовой автономии и цементируют всех одной верой. На Руси за это пролили кровь не случайно.</p>
+    <p>Второй инструмент — <strong>новая столица</strong>. Ашшур-нацир-апал II построил Кальху, Пётр I — Петербург, Эхнатон — Ахетатон, Казахстан — Астану. Смысл один: старая знать остаётся в старом городе и перестаёт что-либо значить, а новая элита формируется вокруг правителя.</p>
+    <div class="quote">«Новая столица всегда означает абсолютно новый курс и разрыв со всеми старыми традициями и связями»<div class="quote-author">— Лектор</div></div>
+    <div class="box-blue"><h4>Читайте столицу как программу</h4><p>Когда власть переносит центр, смотрите не на архитектуру, а на то, кого она туда заселяет. Новая столица — это объявление: прежние элиты больше не имеют веса.</p></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">⚙️</div>
+    <h2 class="section-title">Ассирия: сто лет бардака и взлёт Тиглатпаласара I</h2>
+  </div>
+  <div class="section-content">
+    <p>После убийства Тукульти-Нинурты в 1208 году Ассирия почти на сто лет погружается в смуту. Одновременно идёт <strong>арамейское продвижение</strong>: не единый поход, а медленное просачивание племён, которые воюют, мирятся, оседают и смешиваются. Страна теряет земли, гарнизоны перебивают, торговля рвётся.</p>
+    <p>В 1115 году к власти приходит <strong>Тиглатпаласар I</strong> — фигура, способная вытащить государство из бардака. Он громит племена Наири, побеждает, по надписям, 60 царей, выходит к Чёрному морю в районе нынешнего Батуми и омывает там оружие. Потом берёт Вавилон, идёт через Пальмиру, переваливает Ливан и выходит к Средиземному морю, где его воины омывают оружие, а сам царь с финикийского корабля охотится на дельфинов.</p>
+    <div class="stats">
+      <div class="stat-card"><div class="stat-val">~100 лет</div><div class="stat-lbl">бардака после 1208 года</div></div>
+      <div class="stat-card"><div class="stat-val">60 царей</div><div class="stat-lbl">побеждено на Наири</div></div>
+      <div class="stat-card"><div class="stat-val">1115–1077</div><div class="stat-lbl">правление Тиглатпаласара I</div></div>
+      <div class="stat-card"><div class="stat-val">884–858</div><div class="stat-lbl">Ашшур-нацир-апал II</div></div>
+    </div>
+    <div class="box-pink"><h4>Завоевать ≠ удержать</h4><p>Походы Тиглатпаласара I были блестящими, но закрепиться на огромной территории он не смог: арамейское вторжение достигло пика, гарнизоны перебили, и после его смерти бардак стал ещё страшнее.</p></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">⚠️</div>
+    <h2 class="section-title">Ашшур-нацир-апал II: террор, который собрал врагов в союз</h2>
+  </div>
+  <div class="section-content">
+    <p>К 912 году Ассирия стабилизируется при Адад-Нерари II, а его внук <strong>Ашшур-нацир-апал II</strong> (884–858) доводит военную мощь до предела. Он де-факто истребляет население завоёванных территорий: казни, сожжение живьём, посаженные на кол, пирамиды из пленников. Там, где прошла его армия, оставалась пустыня.</p>
+    <p>Страх работал — но вместе со страхом копилась <strong>ненависть</strong>. Разгромленные племена начали объединяться: в Армянском нагорье сложилось Урарту, в Сирии — мощный союз с центром в Дамаске. Одновременно рушилась экономика: караваны стали обходить Ассирию стороной, а внутри общества обострился конфликт военной и торговой элит. Сильная власть действует не рыночными методами — забирает урожай и товар, не оставляя стимула производить.</p>
+    <div class="box-pink"><h4>Цена жестокости</h4><p>Террор даёт быструю покорность и долгосрочную войну со всеми сразу. Внешние союзы, уход торговли и внутренний раскол — прямые последствия политики истребления.</p></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">💡</div>
+    <h2 class="section-title">Идея сильнее империи</h2>
+  </div>
+  <div class="section-content">
+    <p>Государства создают границы, а идеи — эпохи. Христос и Будда не имели ни армии, ни чиновничества, но спустя тысячелетия миллионы людей определяют себя через их учение. Ни одна империя Древнего Востока такого охвата не дала.</p>
+    <p>Отсюда и смысл изучения древности: на чужих цивилизациях видно, как работают закономерности — борьба центра и элит, распад рыхлых структур, неизбежность смешения. Эти механизмы не меняются, поэтому история позволяет не только объяснять прошлое, но и осторожно предсказывать будущее.</p>
+    <div class="quote">«Породить идею, которая охватит умы миллионов людей... это гораздо круче, чем стать просто главой государства»<div class="quote-author">— Лектор</div></div>
+  </div>
+</section>
+
+<div class="checklist">
+  <div class="chk-header">
+    <div class="chk-title">🎯 Главные выводы</div>
+    <div class="chk-desc">Отмечайте то, что берёте себе на заметку</div>
+  </div>
+  <div class="chk-group-title">Логика власти</div>
+  <div class="chk-item"><div class="chk-text"><strong>Власть — это прежде всего ресурсы</strong><span>За любым «правом рулить» стоит экономический интерес: центр хочет забирать больше, периферия — отдавать меньше</span></div></div>
+  <div class="chk-item"><div class="chk-text"><strong>Централизация выигрывает войны</strong><span>Монолит мобилизует людей, деньги и снабжение на одну задачу, рыхлые союзы этого не могут</span></div></div>
+  <div class="chk-item"><div class="chk-text"><strong>Завоевать не значит удержать</strong><span>Тиглатпаласар I дошёл до Средиземного моря, но гарнизоны перебили, и империя рассыпалась</span></div></div>
+  <div class="chk-group-title">Механизмы империи</div>
+  <div class="chk-item"><div class="chk-text"><strong>Новая столица — это новый курс</strong><span>Кальху, Петербург, Ахетатон, Астана: разрыв со старой знатью и ставка на новую элиту</span></div></div>
+  <div class="chk-item"><div class="chk-text"><strong>Мировая религия ломает родовые культы</strong><span>Культ предков — идеологическая база неподчинения, универсальная вера цементирует государство</span></div></div>
+  <div class="chk-item"><div class="chk-text"><strong>Ассимиляция неизбежна</strong><span>Шумеры, аккадцы, амореи и касситы растворились в вавилонянах; закрытые системы деградируют</span></div></div>
+  <div class="chk-group-title">Уроки</div>
+  <div class="chk-item"><div class="chk-text"><strong>Террор строит врагам союз</strong><span>Жестокость Ашшур-нацир-апала II собрала Урарту и Дамаск и увела караваны в обход Ассирии</span></div></div>
+  <div class="chk-item"><div class="chk-text"><strong>Идея живёт дольше империи</strong><span>Христос и Будда не имели власти, но их учение пережило тысячи государств</span></div></div>
+</div>
+
+        <footer class="footer">
+            <div style="margin-bottom: 16px;">
+                <span class="footer-time">🎬 94 мин видео → 📖 ~7 мин чтения</span>
+            </div>
+            <a class="footer-cta" href="https://t.me/BukvitsaAI_bot?start=1129100159" target="_blank" rel="noopener">Сделать конспект своего видео →</a>
+            <div class="footer-brand">Создано в <a href="https://t.me/BukvitsaAI_bot?start=1129100159" target="_blank" rel="noopener">«Буквице»</a></div>
+        </footer>
+    </div>
+
+    <script>
+    (function () {
+        function all(sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
+
+        /* --- Служебные элементы: модель их не генерирует, добавляем сами --- */
+        all('.section-header').forEach(function (h) {
+            if (!h.querySelector('.section-toggle')) {
+                var t = document.createElement('div');
+                t.className = 'section-toggle';
+                t.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>';
+                h.appendChild(t);
+            }
+        });
+        all('.chk-item').forEach(function (i) {
+            if (!i.querySelector('.checkbox')) {
+                var c = document.createElement('div');
+                c.className = 'checkbox';
+                i.insertBefore(c, i.firstChild);
+            }
+        });
+
+        var checklist = document.querySelector('.checklist');
+        var fill = null, label = null;
+        if (checklist && all('.chk-item').length) {
+            var wrap = document.createElement('div');
+            wrap.className = 'chk-progress';
+            wrap.innerHTML = '<div class="chk-progress-track"><div class="chk-progress-fill"></div></div><div class="chk-progress-label"></div>';
+            checklist.appendChild(wrap);
+            fill = wrap.querySelector('.chk-progress-fill');
+            label = wrap.querySelector('.chk-progress-label');
+        }
+
+        /* --- Сохранение прогресса чек-листа между открытиями файла --- */
+        var titleEl = document.querySelector('.header-title');
+        var KEY = 'bukvitsa:' + (titleEl ? titleEl.textContent : document.title).trim().toLowerCase().replace(/\s+/g, '-').slice(0, 80);
+
+        function updateProgress() {
+            var items = all('.chk-item');
+            var done = items.filter(function (i) { return i.classList.contains('checked'); }).length;
+            if (fill) fill.style.width = (items.length ? Math.round(done / items.length * 100) : 0) + '%';
+            if (label) label.textContent = done + ' из ' + items.length;
+        }
+        function saveState() {
+            try {
+                var checked = [];
+                all('.chk-item').forEach(function (it, idx) { if (it.classList.contains('checked')) checked.push(idx); });
+                localStorage.setItem(KEY, JSON.stringify(checked));
+            } catch (e) { /* приватный режим и т.п. */ }
+        }
+        try {
+            var saved = JSON.parse(localStorage.getItem(KEY) || '[]');
+            all('.chk-item').forEach(function (it, idx) { if (saved.indexOf(idx) !== -1) it.classList.add('checked'); });
+        } catch (e) { /* игнорируем повреждённые данные */ }
+        updateProgress();
+
+        /* --- Клики: делегирование, никаких onclick в разметке --- */
+        document.addEventListener('click', function (e) {
+            var target = e.target;
+            var item = target.closest ? target.closest('.chk-item') : null;
+            if (item) {
+                item.classList.toggle('checked');
+                saveState();
+                updateProgress();
+                return;
+            }
+            var head = target.closest ? target.closest('.section-header') : null;
+            if (head) {
+                var sec = head.closest('.section');
+                var content = sec.querySelector('.section-content');
+                sec.classList.toggle('collapsed');
+                if (sec.classList.contains('collapsed')) {
+                    content.style.maxHeight = '';
+                } else {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                }
+            }
+        });
+
+        /* --- Высоты секций для анимации сворачивания --- */
+        function initHeights() {
+            all('.section:not(.collapsed) .section-content').forEach(function (el) {
+                el.style.maxHeight = el.scrollHeight + 'px';
+            });
+        }
+        window.addEventListener('load', initHeights);
+        window.addEventListener('resize', initHeights);
+        initHeights();
+    })();
+    </script>
+</body>
+</html>
