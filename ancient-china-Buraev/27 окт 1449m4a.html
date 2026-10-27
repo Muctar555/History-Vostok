@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light">
+    <title>Ассирия: как грабёж превратить в империю</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* БУКВИЦА BRAND STYLES v4.0 */
+        :root {
+            color-scheme: light;
+            /* Palette */
+            --dark: #101827;       /* Заголовки */
+            --grey: #6B7280;       /* Текст */
+            --pink: #FA2F6B;       /* Акцент 1 */
+            --blue: #2463EB;       /* Акцент 2 */
+            --sky: #6AC2EA;        /* Доп. акцент */
+            --bg-body: #F9FAFB;    /* Фон */
+            --bg-card: #FFFFFF;    /* Плашки */
+
+            /* Backgrounds for boxes */
+            --bg-blue-muted: #C9D7F5;
+            --bg-pink-muted: #F9CCDB;
+
+            /* Styles */
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+            --radius: 16px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: var(--bg-body);
+            color: var(--grey);
+            line-height: 1.65;
+            padding: 24px 16px;
+            font-weight: 400;
+        }
+
+        strong { color: var(--dark); font-weight: 700; }
+
+        .container { max-width: 760px; margin: 0 auto; }
+
+        /* HEADER */
+        .header {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 40px;
+            margin-bottom: 32px;
+            box-shadow: var(--shadow);
+            border-top: 6px solid var(--blue);
+            text-align: center;
+        }
+        .header-pre { color: var(--sky); text-transform: uppercase; font-size: 13px; font-weight: 700; letter-spacing: 1px; margin-bottom: 12px; }
+        .header-title { font-size: 32px; line-height: 1.2; color: var(--dark); font-weight: 700; margin-bottom: 16px; }
+        .header-sub { font-size: 18px; color: var(--grey); font-weight: 400; }
+
+        .tags { display: flex; justify-content: center; gap: 8px; margin-top: 24px; flex-wrap: wrap; }
+        .tag { background: #EEF4FF; color: var(--blue); padding: 4px 12px; border-radius: 100px; font-size: 13px; font-weight: 500; }
+
+        /* SECTIONS */
+        .section {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: transform 0.2s ease;
+        }
+        .section:hover { transform: translateY(-2px); }
+
+        .section-header {
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            border-bottom: 1px solid transparent;
+        }
+        .section.collapsed .section-header { border-bottom: none; }
+
+        .section-icon {
+            width: 44px; height: 44px;
+            background: #EEF4FF;
+            color: var(--dark);
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 22px;
+            margin-right: 16px;
+            flex-shrink: 0;
+        }
+
+        .section-title { font-size: 20px; font-weight: 700; color: var(--dark); flex: 1; margin: 0; }
+        .section-toggle {
+            width: 24px; height: 24px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--grey);
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+        .section.collapsed .section-toggle { transform: rotate(-90deg); }
+
+        .section-content {
+            padding: 0 24px 32px 24px;
+            color: var(--grey);
+            font-size: 16px;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+        }
+        .section.collapsed .section-content { max-height: 0 !important; padding-bottom: 0; }
+
+        /* CONTENT BLOCKS */
+        p { margin-bottom: 16px; }
+        ul, ol { margin-bottom: 24px; padding-left: 24px; }
+        li { margin-bottom: 8px; }
+
+        /* The "Pink" Box - предупреждения, ошибки, важное */
+        .box-pink {
+            background: var(--bg-pink-muted);
+            padding: 24px;
+            border-radius: 12px;
+            margin: 24px 0;
+            border-left: 4px solid var(--pink);
+        }
+        .box-pink h4 { color: var(--dark); margin: 0 0 8px 0; font-size: 16px; display: flex; align-items: center; gap: 8px; }
+        .box-pink h4::before { content: '⚡'; }
+        .box-pink p:last-child { margin-bottom: 0; }
+
+        /* The "Blue" Box - инсайты, кейсы, приёмы */
+        .box-blue {
+            background: var(--bg-blue-muted);
+            padding: 24px;
+            border-radius: 12px;
+            margin: 24px 0;
+            border-left: 4px solid var(--blue);
+        }
+        .box-blue h4 { color: var(--dark); margin: 0 0 8px 0; font-size: 16px; display: flex; align-items: center; gap: 8px; }
+        .box-blue h4::before { content: '💎'; }
+        .box-blue p:last-child { margin-bottom: 0; }
+
+        /* Quote */
+        .quote {
+            font-size: 18px;
+            font-style: italic;
+            color: var(--dark);
+            border-left: 4px solid var(--sky);
+            padding-left: 20px;
+            margin: 32px 0;
+        }
+        .quote-author { font-size: 14px; color: var(--grey); font-style: normal; margin-top: 8px; font-weight: 500; }
+
+        /* Stats Grid */
+        .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; margin: 24px 0; }
+        .stat-card { background: var(--bg-body); border-radius: 12px; padding: 16px; text-align: center; border: 1px solid #E5E7EB; }
+        .stat-val { font-size: 28px; font-weight: 700; color: var(--blue); line-height: 1.1; margin-bottom: 4px; }
+        .stat-lbl { font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; color: var(--grey); }
+
+        /* CHECKLIST */
+        .checklist {
+            background: var(--bg-card);
+            padding: 32px;
+            border-radius: var(--radius);
+            margin-top: 40px;
+            box-shadow: var(--shadow);
+            border: 2px solid var(--bg-blue-muted);
+        }
+        .chk-header { flex: 1; }
+        .chk-title { font-size: 24px; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
+        .chk-desc { font-size: 14px; margin-bottom: 24px; }
+
+        .chk-group-title {
+            font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--pink); font-weight: 700;
+            margin: 24px 0 12px 0;
+        }
+
+        .chk-item {
+            display: flex; gap: 16px; padding: 12px 0;
+            border-bottom: 1px solid #F3F4F6; cursor: pointer;
+            transition: all 0.2s;
+        }
+        .chk-item:hover { opacity: 0.8; }
+        .chk-item:last-of-type { border-bottom: none; }
+
+        .checkbox {
+            width: 22px; height: 22px;
+            border: 2px solid var(--grey); border-radius: 6px;
+            flex-shrink: 0; margin-top: 2px; position: relative;
+            transition: all 0.2s;
+        }
+        .chk-item.checked .checkbox { background: var(--blue); border-color: var(--blue); }
+        .chk-item.checked .checkbox::after {
+            content: ''; position: absolute; left: 6px; top: 2px; width: 5px; height: 10px;
+            border: solid white; border-width: 0 2px 2px 0; transform: rotate(45deg);
+        }
+        .chk-text strong { display: block; font-size: 15px; color: var(--dark); transition: color 0.2s; }
+        .chk-item.checked .chk-text strong { color: var(--grey); text-decoration: line-through; }
+        .chk-text span { font-size: 13px; color: var(--grey); }
+
+        /* Progress (добавляется скриптом) */
+        .chk-progress { margin-top: 24px; }
+        .chk-progress-track { height: 6px; background: #F3F4F6; border-radius: 3px; overflow: hidden; }
+        .chk-progress-fill { width: 0%; height: 100%; background: var(--blue); transition: width 0.3s; }
+        .chk-progress-label { font-size: 13px; color: var(--grey); margin-top: 8px; text-align: right; font-weight: 500; }
+
+        /* Footer */
+        .footer { text-align: center; padding: 40px 0; margin-top: 20px; border-top: 1px solid #E5E7EB; }
+        .footer-time { background: var(--bg-card); display: inline-block; padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 500; color: var(--dark); border: 1px solid #E5E7EB; }
+        .footer-cta {
+            display: inline-block;
+            background: var(--blue); color: #FFFFFF;
+            font-weight: 700; font-size: 16px;
+            padding: 14px 28px; border-radius: 100px;
+            text-decoration: none;
+            margin: 8px 0 16px 0;
+            box-shadow: var(--shadow);
+            transition: background 0.2s, transform 0.2s;
+        }
+        .footer-cta:hover { background: var(--pink); transform: translateY(-1px); }
+        .footer-brand { font-size: 14px; color: var(--grey); }
+        .footer-brand a { color: var(--blue); font-weight: 700; text-decoration: none; }
+        .footer-brand a:hover { color: var(--pink); }
+
+        @media (max-width: 600px) {
+            .header { padding: 24px; text-align: left; }
+            .header-title { font-size: 24px; }
+            .tags { justify-content: flex-start; }
+            .section-header { padding: 16px; }
+            .section-icon { width: 36px; height: 36px; font-size: 18px; margin-right: 12px; }
+            .section-content { padding: 0 16px 24px 16px; }
+            .checklist { padding: 24px 16px; }
+        }
+
+        @media print {
+            body { background: #FFFFFF; padding: 0; }
+            .header, .section, .checklist { box-shadow: none; border: 1px solid #E5E7EB; }
+            .section { break-inside: avoid; }
+            .section:hover { transform: none; }
+            .section-content { max-height: none !important; padding: 0 24px 24px 24px !important; }
+            .section-toggle, .chk-progress, .footer-cta { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+<header class="header">
+  <div class="header-pre">Интерактивный конспект</div>
+  <h1 class="header-title">Ассирия: как грабёж превратить в империю</h1>
+  <div class="header-sub">От кризиса завоевателей к железной армии и политике, которая делала завоёванных сторонниками</div>
+  <div class="tags"><span class="tag">#Ассирия</span><span class="tag">#История</span><span class="tag">#Управление</span><span class="tag">#ВоенныеРеформы</span><span class="tag">#Технологии</span></div>
+</header>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">⚡</div>
+    <h2 class="section-title">Суть за 30 секунд</h2>
+  </div>
+  <div class="section-content">
+    <ul>
+      <li><strong>Завоевание без экономики истощает.</strong> Ассирия брала добычу, но не умела превращать захваченные земли в устойчивый доход — и получила мятежи, падение доходов и потерю территорий.</li>
+      <li><strong>Железо и организация дали преимущество.</strong> Железная революция сделала оружие дешевле и массовее, а Тиглат-Паласар III построил профессиональную армию с инженерными частями, разведкой и мобильностью.</li>
+      <li><strong>Гений Тиглат-Паласара III — в политике.</strong> Он переселял завоёванных, оставлял им ресурсы и делал их зависимыми от своей власти; Шалманасар V отменил привилегии — и был убит, а Саргон II восстановил баланс.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">🎯</div>
+    <h2 class="section-title">Проблема ассирийской модели</h2>
+  </div>
+  <div class="section-content">
+    <p>Ассирийская держава росла за счёт походов: захватить территорию, вывезти добычу, поставить гарнизон. Но чем больше земель, тем чаще конфликты внутри и на границах. Военная элита забирает жалованье и добычу, а крестьяне и торговцы начинают беднеть. Доходы падают. На вопрос, что делать, звучит предложение развивать сельское хозяйство и сдавать землю в аренду — но после массовых убийств и переселений работать некому. Переселение семей — «переезд равен двум пожарам»: люди бросают поля, хозяйство, привычные связи. Значит, нужно не просто грабить, а встраивать завоёванных в систему. Это и станет главным управленческим вызовом для ассирийских царей.</p>
+    <div class="box-pink"><h4>Грабёж не создаёт устойчивого дохода</h4><p>Быстрая добыча не заменяет работающую экономику. Если местные производители разорены, налоги падают, а власть держится только на армии.</p></div>
+    <div class="quote">«Это и есть сущность Ассирии — завоёвывать, грабить и так далее».</div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">📈</div>
+    <h2 class="section-title">Шалманасар III: походы без тыла</h2>
+  </div>
+  <div class="section-content">
+    <p>Шалманасар III повторил поход к Средиземному морю, собрал огромную армию — 120 тыс. воинов. Но вместо раздробленных племён столкнулся с крупным Сирийским союзом. Сначала сопротивление было сильным; союз развалился из-за внутренней борьбы за власть, и Шалманасар взял Дамаск, дошёл до Средиземного моря, выбил изображение на скале, совершил походы на Урарту, юг Малой Азии и Вавилон. Внешне — успех. Но внутри начался мятеж: на стороне царя остались армия и наследник. Сирия снова отпала. При Шамши-Ададе V и Адад-нирари III Ассирия теряла территории. Малолетним Адад-нирари правила мать Шаммурамат — та самая «Семирамида» Геродота. Висячие сады ей приписали ошибочно: она правила в Ассирии, а сады в Вавилоне появились позже.</p>
+    <div class="stats">
+      <div class="stat-card"><div class="stat-val">120 тыс.</div><div class="stat-lbl">воинов собрал Шалманасар III</div></div>
+      <div class="stat-card"><div class="stat-val">858–824</div><div class="stat-lbl">годы правления Шалманасара III</div></div>
+      <div class="stat-card"><div class="stat-val">811–781</div><div class="stat-lbl">правление Адад-нирари III при регентстве Шаммурамат</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">🧠</div>
+    <h2 class="section-title">Железная революция</h2>
+  </div>
+  <div class="section-content">
+    <p>Бронза требовала меди и олова: олово везли из Афганистана, медь — с Синая и Малой Азии. Плавка шла при 800 °C. Железо плавится около 1000 °C, поэтому сначала его почти не использовали. Перелом дали большие мехи из шкур: они подняли температуру печи и позволили массово получать железо. Преимущество оказалось не только в прочности. Железной руды много и она есть почти везде, поэтому железное оружие и доспехи стали дешевле бронзовых. Это позволило вооружать не только элиту, но и массовую армию. Позже появится дамасская сталь: тонкий клинок, который не ломается и не тупится; секрет её состава до сих пор не восстановлен.</p>
+    <div class="box-blue"><h4>Технология меняет масштаб армии</h4><p>Дешёвый металл означает, что государство может вооружить тысячи людей, а не только небольшую элитную гвардию.</p></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">🔑</div>
+    <h2 class="section-title">Тиглат-Паласар III: армия как система</h2>
+  </div>
+  <div class="section-content">
+    <p>Тиглат-Паласар III пришёл к власти в 745 году через гражданскую войну; его происхождение неизвестно. Он полностью перевооружил армию стальным оружием и защитным доспехом: шлем, кольчуга, щит, меч, копьё — за счёт государства. Это была профессиональная армия, которую готовили с детства, а не ополчение. Впервые армию разделили по родам войск: пехота, инженерные и сапёрные части, стратегическая и фронтовая разведка. Инженеры быстро наводили мосты, строили дороги и тоннели, поэтому армия проходила там, где раньше никто не проходил. Ассирийцы передвигались верхом, часто по двое на коне, но в бой спешивались — кавалерия в полном смысле появится позже, со стременами. Такая армия появлялась неожиданно и действовала быстрее противника.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">🧩</div>
+    <h2 class="section-title">Административный и дипломатический гений</h2>
+  </div>
+  <div class="section-content">
+    <p>Тиглат-Паласар III не истреблял завоёванных. Он переселял их: одну общину — на место другой. Человек на чужой земле понимает, что его защищает только новая власть; ослабнет она — его убьют местные. Поэтому переселенцы становились опорой царя, а не мятежниками. Завоёванные продолжали работать и платить налоги — ресурсы не уничтожались, а встраивались в державу. В Вавилоне он не стал разрушать город, а короновался как царь Вавилона и объявил себя освободителем от халдеев. Сына женил на вавилонской аристократке. Ашур и Ниневию освободил от налогов, Ниневию сделал новой столицей. Вместо врагов он получал сторонников.</p>
+    <div class="quote">«Вместо мятежей и восстаний завоёванного населения он получил население, которое за него будет в огонь идти».</div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">⚠️</div>
+    <h2 class="section-title">Шалманасар V: ошибка наследника</h2>
+  </div>
+  <div class="section-content">
+    <p>Шалманасар V получил готовую империю от отца и решил, что все должны платить. Он отменил безналоговый статус храмов и городов, включая Вавилон, и потребовал полного подчинения. Жрецы и элиты не простили: его убили во время похода, примерно через год-два правления. Причина не только в налогах. Тиглат-Паласар III добивался власти в борьбе и умел договариваться; сын родился наследником, не строил систему и воспринимал власть как данность. Он не понял, что привилегии — это инструмент управления, а не слабость. Один неверный шаг почти обрушил державу.</p>
+    <div class="box-pink"><h4>Наследник без политического опыта опасен для империи</h4><p>Власть, полученная без борьбы, не даёт понимания, как договариваться с элитами и почему привилегии важнее сиюминутной выгоды.</p></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">🛠️</div>
+    <h2 class="section-title">Саргон II: восстановление баланса</h2>
+  </div>
+  <div class="section-content">
+    <p>После убийства Шалманасара V к власти пришёл Саргон II. Его происхождение неизвестно; имя Саргон отсылало к легендарному царю, приплывшему в корзине, — так он обосновывал право на трон. Ситуация была тяжёлой: Вавилон захватили халдеи, Сирия снова собрала антиассирийскую коалицию, Урарту восстановилось. Саргон использовал армию быстро и точно: когда киммерийцы разграбили Урарту и ушли с добычей, он ударил по Урарту и взял Муцацир — культовую столицу. В Вавилоне он снова выступил освободителем от халдеев, короновался и женил сына на вавилонской аристократке. Он восстановил привилегии храмов и городов. Саргон умер своей смертью в 705 году, передав трон Синахерибу.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">📌</div>
+    <h2 class="section-title">Уроки Ассирии</h2>
+  </div>
+  <div class="section-content">
+    <p>История Ассирии — не только хроника походов. Это пример того, как технология и организация меняют баланс сил, а политика определяет, удержится ли завоёванное. Грабёж даёт быстрый доход, но разрушает базу налога. Массовое переселение может быть жестоким, но оно создаёт зависимость от власти. Привилегии и статусы — не «потеря», а способ купить лояльность элит. И главное: империю держит не только армия, но и управленческая система, которую нужно передавать наследнику.</p>
+  </div>
+</section>
+
+<div class="checklist">
+  <div class="chk-header">
+    <div class="chk-title">🎯 Главные выводы</div>
+    <div class="chk-desc">Отмечайте то, что берёте себе на заметку</div>
+  </div>
+  <div class="chk-group-title">Уроки управления</div>
+  <div class="chk-item"><div class="chk-text"><strong>Завоевание должно превращаться в доход</strong><span>Если только грабить, местная экономика падает, а вместе с ней — налоги и устойчивость власти.</span></div></div>
+  <div class="chk-item"><div class="chk-text"><strong>Переселение делает завоёванных зависимыми</strong><span>Человек на чужой земле поддерживает новую власть, потому что без неё он уязвим.</span></div></div>
+  <div class="chk-item"><div class="chk-text"><strong>Привилегии — инструмент лояльности</strong><span>Отмена налоговых льгот храмов и городов может стоить правителю трона.</span></div></div>
+  <div class="chk-group-title">Военные и технологические уроки</div>
+  <div class="chk-item"><div class="chk-text"><strong>Технология меняет масштаб армии</strong><span>Дешёвое железо позволило вооружить массовую армию, а не только элиту.</span></div></div>
+  <div class="chk-item"><div class="chk-text"><strong>Организация сильнее отдельного героя</strong><span>Рода войск, инженерные части и разведка дали скорость и предсказуемость побед.</span></div></div>
+  <div class="chk-item"><div class="chk-text"><strong>Мобильность — преимущество</strong><span>Армия, которая быстрее добирается и проходит препятствия, ломает планы противника.</span></div></div>
+  <div class="chk-group-title">Политические ошибки</div>
+  <div class="chk-item"><div class="chk-text"><strong>Наследника нужно готовить к управлению</strong><span>Власть, полученная без борьбы, не даёт понимания, как договариваться с элитами.</span></div></div>
+  <div class="chk-item"><div class="chk-text"><strong>Не разрушать, а встраивать</strong><span>Саргон II восстановил привилегии и получил лояльность Вавилона и храмов.</span></div></div>
+</div>
+
+        <footer class="footer">
+            <div style="margin-bottom: 16px;">
+                <span class="footer-time">🎬 83 мин видео → 📖 ~7 мин чтения</span>
+            </div>
+            <a class="footer-cta" href="https://t.me/BukvitsaAI_bot?start=1129100159" target="_blank" rel="noopener">Сделать конспект своего видео →</a>
+            <div class="footer-brand">Создано в <a href="https://t.me/BukvitsaAI_bot?start=1129100159" target="_blank" rel="noopener">«Буквице»</a></div>
+        </footer>
+    </div>
+
+    <script>
+    (function () {
+        function all(sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
+
+        /* --- Служебные элементы: модель их не генерирует, добавляем сами --- */
+        all('.section-header').forEach(function (h) {
+            if (!h.querySelector('.section-toggle')) {
+                var t = document.createElement('div');
+                t.className = 'section-toggle';
+                t.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>';
+                h.appendChild(t);
+            }
+        });
+        all('.chk-item').forEach(function (i) {
+            if (!i.querySelector('.checkbox')) {
+                var c = document.createElement('div');
+                c.className = 'checkbox';
+                i.insertBefore(c, i.firstChild);
+            }
+        });
+
+        var checklist = document.querySelector('.checklist');
+        var fill = null, label = null;
+        if (checklist && all('.chk-item').length) {
+            var wrap = document.createElement('div');
+            wrap.className = 'chk-progress';
+            wrap.innerHTML = '<div class="chk-progress-track"><div class="chk-progress-fill"></div></div><div class="chk-progress-label"></div>';
+            checklist.appendChild(wrap);
+            fill = wrap.querySelector('.chk-progress-fill');
+            label = wrap.querySelector('.chk-progress-label');
+        }
+
+        /* --- Сохранение прогресса чек-листа между открытиями файла --- */
+        var titleEl = document.querySelector('.header-title');
+        var KEY = 'bukvitsa:' + (titleEl ? titleEl.textContent : document.title).trim().toLowerCase().replace(/\s+/g, '-').slice(0, 80);
+
+        function updateProgress() {
+            var items = all('.chk-item');
+            var done = items.filter(function (i) { return i.classList.contains('checked'); }).length;
+            if (fill) fill.style.width = (items.length ? Math.round(done / items.length * 100) : 0) + '%';
+            if (label) label.textContent = done + ' из ' + items.length;
+        }
+        function saveState() {
+            try {
+                var checked = [];
+                all('.chk-item').forEach(function (it, idx) { if (it.classList.contains('checked')) checked.push(idx); });
+                localStorage.setItem(KEY, JSON.stringify(checked));
+            } catch (e) { /* приватный режим и т.п. */ }
+        }
+        try {
+            var saved = JSON.parse(localStorage.getItem(KEY) || '[]');
+            all('.chk-item').forEach(function (it, idx) { if (saved.indexOf(idx) !== -1) it.classList.add('checked'); });
+        } catch (e) { /* игнорируем повреждённые данные */ }
+        updateProgress();
+
+        /* --- Клики: делегирование, никаких onclick в разметке --- */
+        document.addEventListener('click', function (e) {
+            var target = e.target;
+            var item = target.closest ? target.closest('.chk-item') : null;
+            if (item) {
+                item.classList.toggle('checked');
+                saveState();
+                updateProgress();
+                return;
+            }
+            var head = target.closest ? target.closest('.section-header') : null;
+            if (head) {
+                var sec = head.closest('.section');
+                var content = sec.querySelector('.section-content');
+                sec.classList.toggle('collapsed');
+                if (sec.classList.contains('collapsed')) {
+                    content.style.maxHeight = '';
+                } else {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                }
+            }
+        });
+
+        /* --- Высоты секций для анимации сворачивания --- */
+        function initHeights() {
+            all('.section:not(.collapsed) .section-content').forEach(function (el) {
+                el.style.maxHeight = el.scrollHeight + 'px';
+            });
+        }
+        window.addEventListener('load', initHeights);
+        window.addEventListener('resize', initHeights);
+        initHeights();
+    })();
+    </script>
+</body>
+</html>
