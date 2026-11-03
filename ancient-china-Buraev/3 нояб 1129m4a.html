@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light">
+    <title>Ассирия: как построить первую военную державу мира — и как потерять её за полвека</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* БУКВИЦА BRAND STYLES v4.0 */
+        :root {
+            color-scheme: light;
+            /* Palette */
+            --dark: #101827;       /* Заголовки */
+            --grey: #6B7280;       /* Текст */
+            --pink: #FA2F6B;       /* Акцент 1 */
+            --blue: #2463EB;       /* Акцент 2 */
+            --sky: #6AC2EA;        /* Доп. акцент */
+            --bg-body: #F9FAFB;    /* Фон */
+            --bg-card: #FFFFFF;    /* Плашки */
+
+            /* Backgrounds for boxes */
+            --bg-blue-muted: #C9D7F5;
+            --bg-pink-muted: #F9CCDB;
+
+            /* Styles */
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+            --radius: 16px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: var(--bg-body);
+            color: var(--grey);
+            line-height: 1.65;
+            padding: 24px 16px;
+            font-weight: 400;
+        }
+
+        strong { color: var(--dark); font-weight: 700; }
+
+        .container { max-width: 760px; margin: 0 auto; }
+
+        /* HEADER */
+        .header {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 40px;
+            margin-bottom: 32px;
+            box-shadow: var(--shadow);
+            border-top: 6px solid var(--blue);
+            text-align: center;
+        }
+        .header-pre { color: var(--sky); text-transform: uppercase; font-size: 13px; font-weight: 700; letter-spacing: 1px; margin-bottom: 12px; }
+        .header-title { font-size: 32px; line-height: 1.2; color: var(--dark); font-weight: 700; margin-bottom: 16px; }
+        .header-sub { font-size: 18px; color: var(--grey); font-weight: 400; }
+
+        .tags { display: flex; justify-content: center; gap: 8px; margin-top: 24px; flex-wrap: wrap; }
+        .tag { background: #EEF4FF; color: var(--blue); padding: 4px 12px; border-radius: 100px; font-size: 13px; font-weight: 500; }
+
+        /* SECTIONS */
+        .section {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: transform 0.2s ease;
+        }
+        .section:hover { transform: translateY(-2px); }
+
+        .section-header {
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            border-bottom: 1px solid transparent;
+        }
+        .section.collapsed .section-header { border-bottom: none; }
+
+        .section-icon {
+            width: 44px; height: 44px;
+            background: #EEF4FF;
+            color: var(--dark);
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 22px;
+            margin-right: 16px;
+            flex-shrink: 0;
+        }
+
+        .section-title { font-size: 20px; font-weight: 700; color: var(--dark); flex: 1; margin: 0; }
+        .section-toggle {
+            width: 24px; height: 24px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--grey);
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+        .section.collapsed .section-toggle { transform: rotate(-90deg); }
+
+        .section-content {
+            padding: 0 24px 32px 24px;
+            color: var(--grey);
+            font-size: 16px;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+        }
+        .section.collapsed .section-content { max-height: 0 !important; padding-bottom: 0; }
+
+        /* CONTENT BLOCKS */
+        p { margin-bottom: 16px; }
+        ul, ol { margin-bottom: 24px; padding-left: 24px; }
+        li { margin-bottom: 8px; }
+
+        /* The "Pink" Box - предупреждения, ошибки, важное */
+        .box-pink {
+            background: var(--bg-pink-muted);
+            padding: 24px;
+            border-radius: 12px;
+            margin: 24px 0;
+            border-left: 4px solid var(--pink);
+        }
+        .box-pink h4 { color: var(--dark); margin: 0 0 8px 0; font-size: 16px; display: flex; align-items: center; gap: 8px; }
+        .box-pink h4::before { content: '⚡'; }
+        .box-pink p:last-child { margin-bottom: 0; }
+
+        /* The "Blue" Box - инсайты, кейсы, приёмы */
+        .box-blue {
+            background: var(--bg-blue-muted);
+            padding: 24px;
+            border-radius: 12px;
+            margin: 24px 0;
+            border-left: 4px solid var(--blue);
+        }
+        .box-blue h4 { color: var(--dark); margin: 0 0 8px 0; font-size: 16px; display: flex; align-items: center; gap: 8px; }
+        .box-blue h4::before { content: '💎'; }
+        .box-blue p:last-child { margin-bottom: 0; }
+
+        /* Quote */
+        .quote {
+            font-size: 18px;
+            font-style: italic;
+            color: var(--dark);
+            border-left: 4px solid var(--sky);
+            padding-left: 20px;
+            margin: 32px 0;
+        }
+        .quote-author { font-size: 14px; color: var(--grey); font-style: normal; margin-top: 8px; font-weight: 500; }
+
+        /* Stats Grid */
+        .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; margin: 24px 0; }
+        .stat-card { background: var(--bg-body); border-radius: 12px; padding: 16px; text-align: center; border: 1px solid #E5E7EB; }
+        .stat-val { font-size: 28px; font-weight: 700; color: var(--blue); line-height: 1.1; margin-bottom: 4px; }
+        .stat-lbl { font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; color: var(--grey); }
+
+        /* CHECKLIST */
+        .checklist {
+            background: var(--bg-card);
+            padding: 32px;
+            border-radius: var(--radius);
+            margin-top: 40px;
+            box-shadow: var(--shadow);
+            border: 2px solid var(--bg-blue-muted);
+        }
+        .chk-header { flex: 1; }
+        .chk-title { font-size: 24px; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
+        .chk-desc { font-size: 14px; margin-bottom: 24px; }
+
+        .chk-group-title {
+            font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--pink); font-weight: 700;
+            margin: 24px 0 12px 0;
+        }
+
+        .chk-item {
+            display: flex; gap: 16px; padding: 12px 0;
+            border-bottom: 1px solid #F3F4F6; cursor: pointer;
+            transition: all 0.2s;
+        }
+        .chk-item:hover { opacity: 0.8; }
+        .chk-item:last-of-type { border-bottom: none; }
+
+        .checkbox {
+            width: 22px; height: 22px;
+            border: 2px solid var(--grey); border-radius: 6px;
+            flex-shrink: 0; margin-top: 2px; position: relative;
+            transition: all 0.2s;
+        }
+        .chk-item.checked .checkbox { background: var(--blue); border-color: var(--blue); }
+        .chk-item.checked .checkbox::after {
+            content: ''; position: absolute; left: 6px; top: 2px; width: 5px; height: 10px;
+            border: solid white; border-width: 0 2px 2px 0; transform: rotate(45deg);
+        }
+        .chk-text strong { display: block; font-size: 15px; color: var(--dark); transition: color 0.2s; }
+        .chk-item.checked .chk-text strong { color: var(--grey); text-decoration: line-through; }
+        .chk-text span { font-size: 13px; color: var(--grey); }
+
+        /* Progress (добавляется скриптом) */
+        .chk-progress { margin-top: 24px; }
+        .chk-progress-track { height: 6px; background: #F3F4F6; border-radius: 3px; overflow: hidden; }
+        .chk-progress-fill { width: 0%; height: 100%; background: var(--blue); transition: width 0.3s; }
+        .chk-progress-label { font-size: 13px; color: var(--grey); margin-top: 8px; text-align: right; font-weight: 500; }
+
+        /* Footer */
+        .footer { text-align: center; padding: 40px 0; margin-top: 20px; border-top: 1px solid #E5E7EB; }
+        .footer-time { background: var(--bg-card); display: inline-block; padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 500; color: var(--dark); border: 1px solid #E5E7EB; }
+        .footer-cta {
+            display: inline-block;
+            background: var(--blue); color: #FFFFFF;
+            font-weight: 700; font-size: 16px;
+            padding: 14px 28px; border-radius: 100px;
+            text-decoration: none;
+            margin: 8px 0 16px 0;
+            box-shadow: var(--shadow);
+            transition: background 0.2s, transform 0.2s;
+        }
+        .footer-cta:hover { background: var(--pink); transform: translateY(-1px); }
+        .footer-brand { font-size: 14px; color: var(--grey); }
+        .footer-brand a { color: var(--blue); font-weight: 700; text-decoration: none; }
+        .footer-brand a:hover { color: var(--pink); }
+
+        @media (max-width: 600px) {
+            .header { padding: 24px; text-align: left; }
+            .header-title { font-size: 24px; }
+            .tags { justify-content: flex-start; }
+            .section-header { padding: 16px; }
+            .section-icon { width: 36px; height: 36px; font-size: 18px; margin-right: 12px; }
+            .section-content { padding: 0 16px 24px 16px; }
+            .checklist { padding: 24px 16px; }
+        }
+
+        @media print {
+            body { background: #FFFFFF; padding: 0; }
+            .header, .section, .checklist { box-shadow: none; border: 1px solid #E5E7EB; }
+            .section { break-inside: avoid; }
+            .section:hover { transform: none; }
+            .section-content { max-height: none !important; padding: 0 24px 24px 24px !important; }
+            .section-toggle, .chk-progress, .footer-cta { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+<header class="header">
+  <div class="header-pre">Интерактивный конспект</div>
+  <h1 class="header-title">Ассирия: как построить первую военную державу мира — и как потерять её за полвека</h1>
+  <div class="header-sub">От реформ Тиглатпаласара III до сожжённой Ниневии: логика государства, армии и разведки на материале древней Ассирии</div>
+  <div class="tags"><span class="tag">#Ассирия</span><span class="tag">#ДревнийВосток</span><span class="tag">#Государство</span><span class="tag">#ВоеннаяРеформа</span><span class="tag">#СтратегическаяРазведка</span></div>
+</header>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">⚡</div>
+    <h2 class="section-title">Суть за 30 секунд</h2>
+  </div>
+  <div class="section-content">
+    <ul>
+      <li><strong>Народы не прилетают с неба.</strong> Шумеры, вавилоняне, китайцы — результат смешения миграционных ветвей; общие имена появляются только тогда, когда возникает государство.</li>
+      <li><strong>Государство оценивают по результату, а не по доброте правителя.</strong> Задача главы государства — рост благосостояния страны; «давайте жить дружно» в политике не работает, всегда найдётся тот, кто заберёт чужую землю.</li>
+      <li><strong>Ассирия пала не от слабости армии, а от управленческих ошибок и борьбы за власть.</strong> Тиглатпаласар III и Саргон II создали систему, Салманасар V и Синахериб её сломали, а после Ашшурбанипала державу добили Вавилон и Мидия.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">🎯</div>
+    <h2 class="section-title">Откуда берутся народы: государство как точка сборки</h2>
+  </div>
+  <div class="section-content">
+    <p>Разговоры о том, что шумеры «прилетели на корабле» или «спустились с неба», — удобная сказка для тех, кто не хочет разбираться. Реальная картина скучнее и надёжнее: горные неолитические племена в VII–VI тысячелетиях спускаются из зон предгорий, в V тысячелетии они уже, вероятно, в Нижней Месопотамии, в IV — точно. Дальше — не исчезновение, а <strong>смешение</strong>: шумеры сливаются с аккадцами, потом добавляется аморейская ветка — и на той же территории возникают новые народы с новыми именами.</p>
+    <p>Ключевой механизм: <strong>общие названия появляются только с государством</strong>. До этого есть роды и племена — урцы, урукцы, лагашцы. Появляется политическое единство — появляются «черноголовые», потом вавилоняне. Та же логика в Китае: смешение австронезийских и сино-тибетских групп даёт хуася. У народов, не создавших государственность, так и остаётся родоплеменная идентичность.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">⚙️</div>
+    <h2 class="section-title">Что такое государство и почему «кот Леопольд» невозможен</h2>
+  </div>
+  <div class="section-content">
+    <p>Государство — это территория, управляемая из нового центра, у которой две обязанности (защита населения и поддержание внутреннего порядка) и три права (население, призыв на военную службу, налоги). Обязанностей может быть и больше, если государство берёт их на себя добровольно: бесплатная медицина, бесплатное образование — как в Советском Союзе. Но за расширение обязанностей платят качеством управления, и ошибки в этой сфере стоят очень дорого.</p>
+    <p>От чего зависит результат? Не от доброты и не от жестокости, а от <strong>силы власти и понимания задач</strong>. Слабая власть ведёт к бардаку: сначала окружение разворовывает деньги, потом не хватает на армию и полицию, потом нечего есть, потом распад и гражданская война за власть. Добрый правитель, при котором все живут бедно, — плохой правитель; Пётр I с его личными пороками — гений, потому что Московская Русь превратилась в империю.</p>
+    <div class="quote">«Глава государства — это не человек. Так устроен мир, таковы закономерности его строительства»<div class="quote-author">— преподаватель</div></div>
+    <p>Отсюда и невозможность «давайте жить дружно»: если один отдаст землю, второй её заберёт — и потомки назовут первого дурой, а второго великим политиком, объединившим раздробленные племена.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">🛠️</div>
+    <h2 class="section-title">Реформа Тиглатпаласара III: первая армия мира</h2>
+  </div>
+  <div class="section-content">
+    <p>VII век до н.э. — на Ближнем Востоке происходит железная революция. Первым, кто понял, что она означает, был Тиглатпаласар III. Его армия — не «мечи и доспехи, как у всех», а нечто структурно новое, и это надо помнить наизусть.</p>
+    <div class="stats">
+      <div class="stat-card"><div class="stat-val">3 «впервые»</div><div class="stat-lbl">Стальное оружие, профессионализм, роды войск</div></div>
+      <div class="stat-card"><div class="stat-val">1 к 100</div><div class="stat-lbl">Цена профессионального воина в бою</div></div>
+      <div class="stat-card"><div class="stat-val">VII в. до н.э.</div><div class="stat-lbl">Время реформы</div></div>
+    </div>
+    <ul>
+      <li>Первая армия мира, <strong>полностью вооружённая стальным оружием</strong> и защищённая доспехами — в кольчуге и шлеме со щитом воина дубиной не убить.</li>
+      <li>Первая <strong>полностью профессиональная</strong> армия, содержащаяся за счёт государства: люди тренируются с утра до ночи, а не воюют «по сезону».</li>
+      <li>Первая армия, <strong>разделённая по родам войск</strong>, где у каждой части свои обязанности.</li>
+      <li>Особое подразделение — <strong>разведка</strong>, стратегическая и фронтовая: шпионы сидели при дворах других государств, поэтому царь никогда не атаковал вслепую.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">🔑</div>
+    <h2 class="section-title">Административная реформа: переселение как технология власти</h2>
+  </div>
+  <div class="section-content">
+    <p>Вторая гениальная идея Тиглатпаласара III — не истреблять завоёванных, а <strong>переселять</strong> их. Убил правителя, уничтожил элиту — и вместо пустыни получаешь работающую территорию: на место одних племён ставятся другие, ресурсы продолжают приносить доход.</p>
+    <p>Расчёт на лояльность прост и жесток: переселенцы здесь чужие, поэтому <strong>за царя будут рвать горло соседям</strong> — как только его власть ослабнет, их тут же убьют. Восстаний нет, доход есть, границы прикрыты.</p>
+    <div class="box-blue"><h4>Храмы без налогов</h4><p>Вавилонян Тиглатпаласар превратил из врагов в преданнейших подданных, а храмы в Ашуре и Ниневии освободил от налогов. Вся верхушка — за него. Завоевание перестаёт быть разовым грабежом и становится системой, приносящей постоянный доход.</p></div>
+    <p>Такой набор решений — редкость: правителей, действовавших подобным образом, за всю историю по пальцам пересчитать. И всё это придумано в VII веке до н.э., до всяких образцов для подражания.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">🧠</div>
+    <h2 class="section-title">Саргон II: разведка вместо штурма</h2>
+  </div>
+  <div class="section-content">
+    <p>Следующий наследник отменил налоговые привилегии — и «кончилось плохо»: на троне оказался человек без мозгов, держава посыпалась. Саргон II не изобретал идей, он видел результат и восстановил систему, а как полководец действовал нетривиально.</p>
+    <p><strong>Урарту.</strong> Лезть в горы через перевалы — нести огромные потери: сидящий на горе камнями перебьёт больше, чем ты доберёшься до него. Саргон объявил поход на Иран, отправил к урартам шпионов с предложением ударить в тыл ассирийцам, демонстративно увёл армию на восток — и устроил засаду. Царь Урарту Руса I попал в ловушку, армия была уничтожена, сам он бросился на меч. После этого Саргон прошёлся по Армянскому нагорью, взял <strong>Муцацир</strong> — культовую столицу, где хранилась фактически казна. Урарту больше никогда не поднялось.</p>
+    <p><strong>Вавилония, 710 год.</strong> Снова шпионы и обещания: «всё будет как при Тиглатпаласаре, налоги уберём». В решительный момент население перешло на сторону Саргона, Мардук-апла-иддин II бежал в Элам, Саргон короновался, женил сына Синахериба на знатной вавилонянке и построил новую столицу Дур-Шаррукин.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">⚠️</div>
+    <h2 class="section-title">Синахериб: сила без стратегии</h2>
+  </div>
+  <div class="section-content">
+    <p>Синахериб (705–681) отменил решение Саргона о безналоговом статусе городов и заявил, что Вавилон — завоёванная территория, а не царство. Результат предсказуем: восстание, снова призванный Мардук-апла-иддин, разгром, разрушенная дамба и затопленный Вавилон. Потом поход к Средиземному морю и осада Иерусалима.</p>
+    <div class="box-blue"><h4>Первая спецпропаганда</h4><p>Перед Иерусалимом ассирийский военачальник обратился к осаждённым с речью: первый ряд погибнет на кольях, дети сгорят в костре, имущество заберут. Это не просто угроза, а работа с населением противника — то, что позже назовут специальной пропагандой. Запуганные сдавались без боя.</p></div>
+    <p>В вавилонских текстах он остался как <strong>Синахериб Злой</strong>: брал город несколько раз, топил его, увозил статуи богов. Внутри страны он тоже всё поотменял — и был убит своими же в результате заговора. Жрецы объяснили это карой богов за обиду, нанесённую храмам.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">📌</div>
+    <h2 class="section-title">Асархаддон и Ашшурбанипал: восстановление и библиотека</h2>
+  </div>
+  <div class="section-content">
+    <p><strong>Асархаддон (681–669)</strong> пришёл к власти через гражданскую войну с братьями, но с армией — и победил. Он вернул статуи богов в Вавилон, восстановил Эсагилу (будущую Вавилонскую башню, тогда ещё не самое высокое здание мира), подтвердил привилегии храмов и городов. С халдеями Приморья разделался жестоко, разрушил непокорный Сидон — жители бежали в Тир. Первый поход в Египет (674) провалился: через Синай нужно идти по безводной пустыне, точно зная колодцы. Второй, в 671-м, был рассчитан — египетская армия разбита, взят Мемфис.</p>
+    <div class="quote">«Гений — это не тот, кто всё время побеждает, а тот, кто умеет свои ошибки исправлять»<div class="quote-author">— преподаватель</div></div>
+    <p><strong>Ашшурбанипал</strong> — сын ассирийки, которого мать Нака поставила наследником, а старшего Шамаш-шум-укина отправила царём в Вавилон. Сам он в походы не ходил, но политически работал виртуозно: развалил союз Сирии, Египта и средиземноморских стран, а вождей восстаний попросту отравили — дешевле, чем воевать и нести потери. В 648 году Вавилон пал, Шамаш-шум-укин сгорел в своём дворце; в 647-м были взяты Сузы.</p>
+    <div class="box-blue"><h4>Библиотека как главное наследие</h4><p>Ашшурбанипал собирал таблички по всей Месопотамии. Именно благодаря его библиотеке в Ниневии наука знает о третьей династии Ура и о большей части того, что мы имеем сегодня. Здоровья для армии не хватило — хватило ума на книги.</p></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">💡</div>
+    <h2 class="section-title">Гибель Ассирии: 626, 614, 612</h2>
+  </div>
+  <div class="section-content">
+    <p>Последние годы Ашшурбанипала неизвестны: он умер в Харане на севере, не в столице, — судя по всему, его отстранили от власти, а наследники передрались между собой. Пока шла борьба за власть, в 626 году халдейский вождь <strong>Набопаласар</strong> захватил Вавилон и объявил себя царём — Ассирия не ответила.</p>
+    <p>Набопаласар повторил приём Тиглатпаласара и Саргона: не грабил город, вернул привилегии, привёз жертвы местным богам. Халдеи к этому времени давно стали местными, а не пришлым кочевым племенем, — и Вавилон его принял. Дальше он сделал то, что делали только через брак: женил сына <strong>Навуходоносора II</strong> на Амитиде, дочери мидийского царя Киаксара. Союз с Мидией — и совместный удар.</p>
+    <div class="stats">
+      <div class="stat-card"><div class="stat-val">614</div><div class="stat-lbl">Взят Ашшур</div></div>
+      <div class="stat-card"><div class="stat-val">612</div><div class="stat-lbl">Ниневия стёрта с лица земли</div></div>
+      <div class="stat-card"><div class="stat-val">~610</div><div class="stat-lbl">Ассирия прекращает существование</div></div>
+    </div>
+    <p>Ниневию уничтожили полностью: население вырезано, включая женщин и детей, — ничего живого не должно было остаться. Ирония в том, что именно это спасло библиотеку: город засыпало, селиться там боялись, и таблички пролежали под землёй до археологов. Крестьяне XX века выкладывали ими дорожки, не понимая, что держат в руках древнюю письменность. Так же случайно открыли хараппскую цивилизацию в Индии — просто потому, что среди копающих окопы оказался образованный офицер.</p>
+    <p>Ассирийский этнос практически исчез: небольшие группы живут в России и одна деревня называет себя ассирийской, но растворяется. Осталась культура — крылатые быки, боги, армия. Следующая тема — Нововавилонская держава и Навуходоносор II.</p>
+  </div>
+</section>
+
+<div class="checklist">
+  <div class="chk-header">
+    <div class="chk-title">🎯 Главные выводы</div>
+    <div class="chk-desc">Отмечайте то, что берёте себе на заметку</div>
+  </div>
+  <div class="chk-group-title">Механизмы государства</div>
+  <div class="chk-item"><div class="chk-text"><strong>Общее имя народа появляется вместе с государством</strong><span>До этого существуют только роды и племена; смешение ветвей даёт новый этнос, а не «прилёт с неба»</span></div></div>
+  <div class="chk-item"><div class="chk-text"><strong>Правителя судят по результату, а не по личным качествам</strong><span>Приросло государство и выросло благосостояние — политик хороший; рухнуло — плохой, чем бы он ни объяснял</span></div></div>
+  <div class="chk-item"><div class="chk-text"><strong>Слабая власть запускает цепочку распада</strong><span>Воровство окружения → нет денег на армию и полицию → недовольство → гражданская война за власть</span></div></div>
+  <div class="chk-group-title">Военная и административная система</div>
+  <div class="chk-item"><div class="chk-text"><strong>Запомнить три «впервые» Тиглатпаласара III</strong><span>Полностью стальное вооружение, полностью профессиональная армия за счёт государства, деление на рода войск</span></div></div>
+  <div class="chk-item"><div class="chk-text"><strong>Разведка как замена штурму</strong><span>Шпионы при чужих дворах и засада против Урарту; подкуп и обещания вместо осады Вавилона в 710 году</span></div></div>
+  <div class="chk-item"><div class="chk-text"><strong>Переселение вместо истребления</strong><span>Чужие на новой земле держатся за царя, ресурсы сохраняются, восстаний нет; храмы без налогов — лояльность верхушки</span></div></div>
+  <div class="chk-group-title">Уроки падения</div>
+  <div class="chk-item"><div class="chk-text"><strong>Отмена привилегий = восстание</strong><span>Салманасар V и Синахериб отменили налоговые льготы городов и храмов — и получили мятежи и гибель</span></div></div>
+  <div class="chk-item"><div class="chk-text"><strong>Борьба за власть после сильного правителя открывает дорогу врагам</strong><span>После Ашшурбанипала Набопаласар взял Вавилон в 626-м, а союз с Мидией добил Ассирию в 612-м</span></div></div>
+  <div class="chk-item"><div class="chk-text"><strong>Культура переживает государство</strong><span>Библиотека Ашшурбанипала уцелела под завалами разрушенной Ниневии и стала основой науки о Месопотамии</span></div></div>
+</div>
+
+        <footer class="footer">
+            <div style="margin-bottom: 16px;">
+                <span class="footer-time">🎬 82 мин видео → 📖 ~9 мин чтения</span>
+            </div>
+            <a class="footer-cta" href="https://t.me/BukvitsaAI_bot?start=1129100159" target="_blank" rel="noopener">Сделать конспект своего видео →</a>
+            <div class="footer-brand">Создано в <a href="https://t.me/BukvitsaAI_bot?start=1129100159" target="_blank" rel="noopener">«Буквице»</a></div>
+        </footer>
+    </div>
+
+    <script>
+    (function () {
+        function all(sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
+
+        /* --- Служебные элементы: модель их не генерирует, добавляем сами --- */
+        all('.section-header').forEach(function (h) {
+            if (!h.querySelector('.section-toggle')) {
+                var t = document.createElement('div');
+                t.className = 'section-toggle';
+                t.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>';
+                h.appendChild(t);
+            }
+        });
+        all('.chk-item').forEach(function (i) {
+            if (!i.querySelector('.checkbox')) {
+                var c = document.createElement('div');
+                c.className = 'checkbox';
+                i.insertBefore(c, i.firstChild);
+            }
+        });
+
+        var checklist = document.querySelector('.checklist');
+        var fill = null, label = null;
+        if (checklist && all('.chk-item').length) {
+            var wrap = document.createElement('div');
+            wrap.className = 'chk-progress';
+            wrap.innerHTML = '<div class="chk-progress-track"><div class="chk-progress-fill"></div></div><div class="chk-progress-label"></div>';
+            checklist.appendChild(wrap);
+            fill = wrap.querySelector('.chk-progress-fill');
+            label = wrap.querySelector('.chk-progress-label');
+        }
+
+        /* --- Сохранение прогресса чек-листа между открытиями файла --- */
+        var titleEl = document.querySelector('.header-title');
+        var KEY = 'bukvitsa:' + (titleEl ? titleEl.textContent : document.title).trim().toLowerCase().replace(/\s+/g, '-').slice(0, 80);
+
+        function updateProgress() {
+            var items = all('.chk-item');
+            var done = items.filter(function (i) { return i.classList.contains('checked'); }).length;
+            if (fill) fill.style.width = (items.length ? Math.round(done / items.length * 100) : 0) + '%';
+            if (label) label.textContent = done + ' из ' + items.length;
+        }
+        function saveState() {
+            try {
+                var checked = [];
+                all('.chk-item').forEach(function (it, idx) { if (it.classList.contains('checked')) checked.push(idx); });
+                localStorage.setItem(KEY, JSON.stringify(checked));
+            } catch (e) { /* приватный режим и т.п. */ }
+        }
+        try {
+            var saved = JSON.parse(localStorage.getItem(KEY) || '[]');
+            all('.chk-item').forEach(function (it, idx) { if (saved.indexOf(idx) !== -1) it.classList.add('checked'); });
+        } catch (e) { /* игнорируем повреждённые данные */ }
+        updateProgress();
+
+        /* --- Клики: делегирование, никаких onclick в разметке --- */
+        document.addEventListener('click', function (e) {
+            var target = e.target;
+            var item = target.closest ? target.closest('.chk-item') : null;
+            if (item) {
+                item.classList.toggle('checked');
+                saveState();
+                updateProgress();
+                return;
+            }
+            var head = target.closest ? target.closest('.section-header') : null;
+            if (head) {
+                var sec = head.closest('.section');
+                var content = sec.querySelector('.section-content');
+                sec.classList.toggle('collapsed');
+                if (sec.classList.contains('collapsed')) {
+                    content.style.maxHeight = '';
+                } else {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                }
+            }
+        });
+
+        /* --- Высоты секций для анимации сворачивания --- */
+        function initHeights() {
+            all('.section:not(.collapsed) .section-content').forEach(function (el) {
+                el.style.maxHeight = el.scrollHeight + 'px';
+            });
+        }
+        window.addEventListener('load', initHeights);
+        window.addEventListener('resize', initHeights);
+        initHeights();
+    })();
+    </script>
+</body>
+</html>
