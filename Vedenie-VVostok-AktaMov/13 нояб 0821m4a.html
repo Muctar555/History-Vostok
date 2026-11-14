@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light">
+    <title>Фольклор и литература: от народной мудрости к письменному автору</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* БУКВИЦА BRAND STYLES v4.0 */
+        :root {
+            color-scheme: light;
+            /* Palette */
+            --dark: #101827;       /* Заголовки */
+            --grey: #6B7280;       /* Текст */
+            --pink: #FA2F6B;       /* Акцент 1 */
+            --blue: #2463EB;       /* Акцент 2 */
+            --sky: #6AC2EA;        /* Доп. акцент */
+            --bg-body: #F9FAFB;    /* Фон */
+            --bg-card: #FFFFFF;    /* Плашки */
+
+            /* Backgrounds for boxes */
+            --bg-blue-muted: #C9D7F5;
+            --bg-pink-muted: #F9CCDB;
+
+            /* Styles */
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+            --radius: 16px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: var(--bg-body);
+            color: var(--grey);
+            line-height: 1.65;
+            padding: 24px 16px;
+            font-weight: 400;
+        }
+
+        strong { color: var(--dark); font-weight: 700; }
+
+        .container { max-width: 760px; margin: 0 auto; }
+
+        /* HEADER */
+        .header {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 40px;
+            margin-bottom: 32px;
+            box-shadow: var(--shadow);
+            border-top: 6px solid var(--blue);
+            text-align: center;
+        }
+        .header-pre { color: var(--sky); text-transform: uppercase; font-size: 13px; font-weight: 700; letter-spacing: 1px; margin-bottom: 12px; }
+        .header-title { font-size: 32px; line-height: 1.2; color: var(--dark); font-weight: 700; margin-bottom: 16px; }
+        .header-sub { font-size: 18px; color: var(--grey); font-weight: 400; }
+
+        .tags { display: flex; justify-content: center; gap: 8px; margin-top: 24px; flex-wrap: wrap; }
+        .tag { background: #EEF4FF; color: var(--blue); padding: 4px 12px; border-radius: 100px; font-size: 13px; font-weight: 500; }
+
+        /* SECTIONS */
+        .section {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: transform 0.2s ease;
+        }
+        .section:hover { transform: translateY(-2px); }
+
+        .section-header {
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            border-bottom: 1px solid transparent;
+        }
+        .section.collapsed .section-header { border-bottom: none; }
+
+        .section-icon {
+            width: 44px; height: 44px;
+            background: #EEF4FF;
+            color: var(--dark);
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 22px;
+            margin-right: 16px;
+            flex-shrink: 0;
+        }
+
+        .section-title { font-size: 20px; font-weight: 700; color: var(--dark); flex: 1; margin: 0; }
+        .section-toggle {
+            width: 24px; height: 24px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--grey);
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+        .section.collapsed .section-toggle { transform: rotate(-90deg); }
+
+        .section-content {
+            padding: 0 24px 32px 24px;
+            color: var(--grey);
+            font-size: 16px;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+        }
+        .section.collapsed .section-content { max-height: 0 !important; padding-bottom: 0; }
+
+        /* CONTENT BLOCKS */
+        p { margin-bottom: 16px; }
+        ul, ol { margin-bottom: 24px; padding-left: 24px; }
+        li { margin-bottom: 8px; }
+
+        /* The "Pink" Box - предупреждения, ошибки, важное */
+        .box-pink {
+            background: var(--bg-pink-muted);
+            padding: 24px;
+            border-radius: 12px;
+            margin: 24px 0;
+            border-left: 4px solid var(--pink);
+        }
+        .box-pink h4 { color: var(--dark); margin: 0 0 8px 0; font-size: 16px; display: flex; align-items: center; gap: 8px; }
+        .box-pink h4::before { content: '⚡'; }
+        .box-pink p:last-child { margin-bottom: 0; }
+
+        /* The "Blue" Box - инсайты, кейсы, приёмы */
+        .box-blue {
+            background: var(--bg-blue-muted);
+            padding: 24px;
+            border-radius: 12px;
+            margin: 24px 0;
+            border-left: 4px solid var(--blue);
+        }
+        .box-blue h4 { color: var(--dark); margin: 0 0 8px 0; font-size: 16px; display: flex; align-items: center; gap: 8px; }
+        .box-blue h4::before { content: '💎'; }
+        .box-blue p:last-child { margin-bottom: 0; }
+
+        /* Quote */
+        .quote {
+            font-size: 18px;
+            font-style: italic;
+            color: var(--dark);
+            border-left: 4px solid var(--sky);
+            padding-left: 20px;
+            margin: 32px 0;
+        }
+        .quote-author { font-size: 14px; color: var(--grey); font-style: normal; margin-top: 8px; font-weight: 500; }
+
+        /* Stats Grid */
+        .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; margin: 24px 0; }
+        .stat-card { background: var(--bg-body); border-radius: 12px; padding: 16px; text-align: center; border: 1px solid #E5E7EB; }
+        .stat-val { font-size: 28px; font-weight: 700; color: var(--blue); line-height: 1.1; margin-bottom: 4px; }
+        .stat-lbl { font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; color: var(--grey); }
+
+        /* CHECKLIST */
+        .checklist {
+            background: var(--bg-card);
+            padding: 32px;
+            border-radius: var(--radius);
+            margin-top: 40px;
+            box-shadow: var(--shadow);
+            border: 2px solid var(--bg-blue-muted);
+        }
+        .chk-header { flex: 1; }
+        .chk-title { font-size: 24px; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
+        .chk-desc { font-size: 14px; margin-bottom: 24px; }
+
+        .chk-group-title {
+            font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--pink); font-weight: 700;
+            margin: 24px 0 12px 0;
+        }
+
+        .chk-item {
+            display: flex; gap: 16px; padding: 12px 0;
+            border-bottom: 1px solid #F3F4F6; cursor: pointer;
+            transition: all 0.2s;
+        }
+        .chk-item:hover { opacity: 0.8; }
+        .chk-item:last-of-type { border-bottom: none; }
+
+        .checkbox {
+            width: 22px; height: 22px;
+            border: 2px solid var(--grey); border-radius: 6px;
+            flex-shrink: 0; margin-top: 2px; position: relative;
+            transition: all 0.2s;
+        }
+        .chk-item.checked .checkbox { background: var(--blue); border-color: var(--blue); }
+        .chk-item.checked .checkbox::after {
+            content: ''; position: absolute; left: 6px; top: 2px; width: 5px; height: 10px;
+            border: solid white; border-width: 0 2px 2px 0; transform: rotate(45deg);
+        }
+        .chk-text strong { display: block; font-size: 15px; color: var(--dark); transition: color 0.2s; }
+        .chk-item.checked .chk-text strong { color: var(--grey); text-decoration: line-through; }
+        .chk-text span { font-size: 13px; color: var(--grey); }
+
+        /* Progress (добавляется скриптом) */
+        .chk-progress { margin-top: 24px; }
+        .chk-progress-track { height: 6px; background: #F3F4F6; border-radius: 3px; overflow: hidden; }
+        .chk-progress-fill { width: 0%; height: 100%; background: var(--blue); transition: width 0.3s; }
+        .chk-progress-label { font-size: 13px; color: var(--grey); margin-top: 8px; text-align: right; font-weight: 500; }
+
+        /* Footer */
+        .footer { text-align: center; padding: 40px 0; margin-top: 20px; border-top: 1px solid #E5E7EB; }
+        .footer-time { background: var(--bg-card); display: inline-block; padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 500; color: var(--dark); border: 1px solid #E5E7EB; }
+        .footer-cta {
+            display: inline-block;
+            background: var(--blue); color: #FFFFFF;
+            font-weight: 700; font-size: 16px;
+            padding: 14px 28px; border-radius: 100px;
+            text-decoration: none;
+            margin: 8px 0 16px 0;
+            box-shadow: var(--shadow);
+            transition: background 0.2s, transform 0.2s;
+        }
+        .footer-cta:hover { background: var(--pink); transform: translateY(-1px); }
+        .footer-brand { font-size: 14px; color: var(--grey); }
+        .footer-brand a { color: var(--blue); font-weight: 700; text-decoration: none; }
+        .footer-brand a:hover { color: var(--pink); }
+
+        @media (max-width: 600px) {
+            .header { padding: 24px; text-align: left; }
+            .header-title { font-size: 24px; }
+            .tags { justify-content: flex-start; }
+            .section-header { padding: 16px; }
+            .section-icon { width: 36px; height: 36px; font-size: 18px; margin-right: 12px; }
+            .section-content { padding: 0 16px 24px 16px; }
+            .checklist { padding: 24px 16px; }
+        }
+
+        @media print {
+            body { background: #FFFFFF; padding: 0; }
+            .header, .section, .checklist { box-shadow: none; border: 1px solid #E5E7EB; }
+            .section { break-inside: avoid; }
+            .section:hover { transform: none; }
+            .section-content { max-height: none !important; padding: 0 24px 24px 24px !important; }
+            .section-toggle, .chk-progress, .footer-cta { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+<header class="header">
+  <div class="header-pre">Интерактивный конспект</div>
+  <h1 class="header-title">Фольклор и литература: от народной мудрости к письменному автору</h1>
+  <div class="header-sub">Как отличить фольклор от литературы, зачем нужны его три функции и почему эпос — вершина устного творчества</div>
+  <div class="tags"><span class="tag">#Фольклор</span><span class="tag">#ЛитератураВостока</span><span class="tag">#Мифология</span><span class="tag">#Эпос</span><span class="tag">#Жанры</span></div>
+</header>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">⚡</div>
+    <h2 class="section-title">Суть за 30 секунд</h2>
+  </div>
+  <div class="section-content">
+    <ul>
+      <li><strong>Фольклор — это «народная мудрость»</strong>, устное народное творчество, у которого два обязательных признака: он бесписьменный и у него нет автора.</li>
+      <li><strong>Жанровая лестница ведёт от поговорки и загадки к мифу и эпосу</strong> — а эпос не просто самое масштабное произведение, а системное объяснение жизни народа и один из первых исторических источников.</li>
+      <li><strong>Литература — следующий этап развития культуры:</strong> она рождается вместе с письменностью, и в ней впервые появляются автор и субъектность героя.</li>
+    </ul>
+    <div class="stats">
+      <div class="stat-card"><div class="stat-val">2</div><div class="stat-lbl">критерия фольклора</div></div>
+      <div class="stat-card"><div class="stat-val">3</div><div class="stat-lbl">функции фольклора</div></div>
+      <div class="stat-card"><div class="stat-val">до 9 дней</div><div class="stat-lbl">чтение эпоса «Гэсэр»</div></div>
+      <div class="stat-card"><div class="stat-val">5–4 тыс. лет</div><div class="stat-lbl">древней китайской литературе</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">🧩</div>
+    <h2 class="section-title">Что вообще делает текст фольклором</h2>
+  </div>
+  <div class="section-content">
+    <p>Начинается всё с этимологии: <em>folk</em> — народ, <em>lore</em> — знание, предание. Отсюда самое простое и самое широкое определение: <strong>фольклор — это устное народное творчество</strong>. Преподаватель подчёркивает: без разбора терминов и этимологии в больших темах вроде «фольклор и литература народов Востока» разобраться нельзя — эти понятия не существуют сами по себе, они работают только в связке.</p>
+    <p>Дальше вводится рабочий инструмент — <strong>два критерия</strong>, по которым фольклор отличается от любого другого текста:</p>
+    <ol>
+      <li>фольклор <strong>бесписьменный</strong> — он не перенесён на носитель;</li>
+      <li>у фольклора <strong>нет авторства</strong>.</li>
+    </ol>
+    <p>Именно эти два признака задают его «сущность в содержании». В узком, филологическом смысле фольклор — это всё созданное народом, что несёт художественную ценность и решает художественные задачи. Но есть и второй, широкий смысл — и ему посвящён отдельный разговор.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">🧠</div>
+    <h2 class="section-title">Три функции фольклора</h2>
+  </div>
+  <div class="section-content">
+    <p><strong>Познавательная.</strong> Самая «онтологическая» функция: фольклор объясняет, как был создан мир и в каких условиях развивался человек. Студенты справедливо добавляют: это ещё и набор практик выживания, правил поведения.</p>
+    <p><strong>Воспитательная.</strong> Она опирается на дуалистичность человеческого сознания — на привычку делить мир на левое и правое, плохое и хорошее. В любом фольклорном материале заложены нравственные идеалы этноса, и каждый этнос стремится приблизить подрастающее поколение к своему идеалу. Механизм хорошо виден по сказкам: они формируют сюжет и «архитектонику», внутри которой слушатель понимает, каким должен быть настоящий богатырь или девушка.</p>
+    <p><strong>Мировоззренческая.</strong> Фольклор формирует общую картину мира народа — в том числе сравнительную: как живём мы и как живут другие народы, какое место наш народ занимает в этом мире. И главное: на основе фольклора постепенно возникает следующий элемент культуры — литература.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">🔑</div>
+    <h2 class="section-title">Широкий смысл: этнографический фольклор</h2>
+  </div>
+  <div class="section-content">
+    <p>В этнографическом смысле фольклор — это не только устное творчество, а отражение характера адаптации конкретного этноса к условиям проживания. Сюда попадают и другие проявления народной жизни:</p>
+    <ul>
+      <li><strong>Танец.</strong> Формально он не устное творчество, но вырос из ритуальных практик: у многих народов танцевали жрецы и шаманы, поэтому танец носил сакральный характер и отражал особенности народа.</li>
+      <li><strong>Обряды и ритуалы.</strong> Студентов озадачивает вопрос, почему их совершают именно так. Ответ предельно простой: потому что всегда так делали, и никто не спрашивает «почему так можно».</li>
+      <li><strong>Народные ремёсла.</strong> У монголов высоко ценили дархана — мастера по металлу: оружие, доспехи, кухонная утварь, ювелирные украшения, чеканка, выплавка, ковка.</li>
+      <li><strong>Посуда.</strong> Пример из китайской культуры — большой бронзовый котёл на трёх ножках, который стоит почти в каждом историческом музее Китая и наделён сакральным значением.</li>
+    </ul>
+    <p>Мифология в этой логике тоже включается в фольклор — и устное творчество здесь оказывается уже более высокой ступенью развития.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">🗣️</div>
+    <h2 class="section-title">Жанровая лестница: от поговорки до былины</h2>
+  </div>
+  <div class="section-content">
+    <p>Жанр отражает внутреннюю сущность произведения и его внешнюю оболочку. Два самых больших жанра — проза и поэзия, внутри которых десятки более мелких. Простой путь — идти снизу вверх, от самых простых форм.</p>
+    <p><strong>Поговорки и пословицы</strong> — закостенелые речевые конструкты, объясняющие очень разные ситуации. «Тише едешь — дальше будешь» говорит вовсе не о скорости: речь о суете, которая мешает, — торопиться и суетиться это разные вещи. Такие конструкции нельзя дословно перевести с языка на язык.</p>
+    <p><strong>Загадка</strong> — смысловая тайна, где образ косвенно отсылает к разгадке. Классическое «висит груша, нельзя скушать» (лампочка) постепенно становится анахронизмом вместе с самим явлением, из которого выросла.</p>
+    <p><strong>Частушка</strong> — более сложный элемент: обязательная рифма, короткий сюжет, юмор и лаконичность, максимум одна строфа в четыре строки. При этом частушка может вбирать в себя форму загадки или пословицы.</p>
+    <p><strong>Былина</strong> — синтез сказки и исторического повествования, передача события с возможной реальной основой.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">📌</div>
+    <h2 class="section-title">Мифы Востока: Нюйва, Паньгу и человек без субъектности</h2>
+  </div>
+  <div class="section-content">
+    <p>Миф — стройная система, почти философского уровня. Мифы есть у каждого народа, но развиты неодинаково: их сложность зависит от условий жизни. Суровый быт Крайнего Севера рождает немногочисленные сюжеты, а быт определяет и способ хозяйства, и досуг: мифы создавались в том числе как форма отдыха.</p>
+    <p><strong>Нюйва</strong> лепила людей из глины и спускала их на землю — фигурки оживали и убегали. Когда богиня устала, она окунула верёвку в глиняную жижу и разбрызгала её, и кусочки глины тоже стали людьми. В этом мифе заложена идея социальной сегрегации: одни созданы руками, другие — брызгами. <strong>Паньгу</strong> разделил небо и землю, упираясь одной ногой в землю и отталкивая небо другой, — прямая параллель с титанами, держащими небосвод.</p>
+    <div class="box-blue"><h4>Главный признак мифов народов Востока</h4><p>Человек в них не обладал субъектностью: он воспринимался не как отдельный индивид, а как элемент социума, и это было нормой. Отсюда и разница с литературой: там появляется субъектность героя и появляется автор. Авторы Востока при этом часто подписывались псевдонимами или не подписывались вовсе — существовала традиция не отрываться от общества.</p></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">📈</div>
+    <h2 class="section-title">Эпос: вершина фольклора и исторический источник</h2>
+  </div>
+  <div class="section-content">
+    <div class="quote">«Эпос структурно, системно объясняет жизнь. Ни много ни мало»<div class="quote-author">— Преподаватель</div></div>
+    <p>Эпос объясняет всё: как появился народ, как формировались социальные институты, как относиться к явлениям, как преодолевать проблемы и бороться с врагами, каким должен быть человек в идеалах конкретной культуры. Эпосов сохранилось не так много — это штучное изобретение этноса.</p>
+    <ul>
+      <li><strong>«Эпос о Гильгамеше»</strong> — древнейший литературный памятник, известность которому дали шумеры (Ярослав вспомнил их первым). Впервые человек был сравнён с богом и смог с ним конкурировать. Мотивы эпоса обнаруживаются у древних иранцев и других индоевропейских народов.</li>
+      <li><strong>«Манас»</strong> — крупнейший из сохранившихся по объёму.</li>
+      <li><strong>«Гэсэр»</strong> — оригиналом считается тибетская версия, есть монгольская и бурятская; сказитель мог читать его до девяти дней, а сам эпос носил сакральный характер: исполнителя усаживали в юрте, угощали чаем и слушали с перерывами.</li>
+      <li><strong>«Джангар»</strong> — эпос ойратский, хотя калмыки считают его исключительно своим.</li>
+      <li><strong>«Шахнаме»</strong> — Персия. Сюжет об отце, который сразился с сыном, не зная об этом, носит поучительный характер и скрывает вечную проблему конфликта поколений.</li>
+      <li><strong>«Махабхарата» и «Рамаяна»</strong> — Индия, где литературная традиция была чрезвычайно развита.</li>
+    </ul>
+    <div class="quote">«Причина всех конфликтов — это изначально непонимание»<div class="quote-author">— Преподаватель</div></div>
+    <p>Ещё одна специфика эпоса: его можно рассматривать как <strong>исторический источник</strong> — он детально описывает явления и события, вкрапливая туда элементы художественного вымысла.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">🛠️</div>
+    <h2 class="section-title">Литература: буква, письменность, автор</h2>
+  </div>
+  <div class="section-content">
+    <p><em>Litera</em> — буква, знак, письмо, письменность. Значит, появление литературы неразрывно связано с созданием письменности: литература — это художественное творчество, выраженное в словесной форме, и она стартует там, где знание можно зафиксировать.</p>
+    <div class="quote">«Именно письменность позволила фиксировать знание и это знание передавать»<div class="quote-author">— Преподаватель</div></div>
+    <ul>
+      <li><strong>Шумеры</strong> — одни из основоположников классической литературы: «Эпос о Гильгамеше» считается уже литературным произведением, хотя автор неизвестен, а текст многократно и существенно перерабатывался.</li>
+      <li><strong>Индия. Веды</strong> — тексты нравственно-религиозного характера, определявшие нормы поведения и взаимоотношений между людьми.</li>
+      <li><strong>Китай.</strong> Литературе 5–4 тысячи лет, но основоположником считается Конфуций, живший намного позже: «Пятикнижие» («У-цзин») и «Беседы и суждения» («Лунь юй»). Древнекитайская литература носила идеологический и философский характер — Конфуций отражал взгляды элиты на построение и развитие государства. Позже Цинь Шихуан снёс конфуцианство, но это тема отдельного семинара. Пейзажная лирика <strong>Ли Бо</strong> передаёт переживания через природные явления — параллель с Фетом и его стихотворением без единого глагола.</li>
+      <li><strong>Арабская литература.</strong> Специфика самой письменности и фигура универсала: поэт, философ, учёный и летописец в одном лице — таким был Рашид ад-Дин.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon">⚠️</div>
+    <h2 class="section-title">Итог: аллегория вместо прямого назидания</h2>
+  </div>
+  <div class="section-content">
+    <p>Фольклор — важнейшее отражение характера развития этноса. Его элементы кажутся простыми, но несут глубокий смысл: «Без труда не выловишь рыбку из пруда» не говорит напрямую «ты должен трудиться» — она объясняет через аллегорию, что без труда результата не достичь. Именно поэтому фольклор воспитывает, не назидая.</p>
+    <p>Итоговая схема темы: фольклор существует в двух видах — узком филологическом (жанры) и широком этнографическом (искусство, ремёсла, танцы, обычаи, обряды, ритуалы, быт). Литература возникает намного позже и является следующим этапом развития этого вида культуры, будучи тесно связанной с письменностью.</p>
+    <div class="box-pink"><h4>Что важно не потерять</h4><p>Все темы семестра выносятся на экзамен. Форма обучения традиционная: нужно воспроизвести собственное понимание материала и затем применить его на практике — на перестройку процесса обучения при нынешней системе времени не хватает.</p></div>
+  </div>
+</section>
+
+<div class="checklist">
+  <div class="chk-header">
+    <div class="chk-title">🎯 Главные выводы</div>
+    <div class="chk-desc">Отмечайте то, что берёте себе на заметку</div>
+  </div>
+  <div class="chk-group-title">Понятийный минимум</div>
+  <div class="chk-item"><div class="chk-text"><strong>Запомнить два критерия фольклора</strong><span>Бесписьменность и отсутствие авторства — по ним фольклор отличается от литературы</span></div></div>
+  <div class="chk-item"><div class="chk-text"><strong>Развести узкий и широкий смысл</strong><span>Филологический — жанры устного творчества; этнографический — танец, обряды, ремёсла, утварь, быт</span></div></div>
+  <div class="chk-item"><div class="chk-text"><strong>Держать в голове три функции</strong><span>Познавательная, воспитательная, мировоззренческая — и то, что на основе фольклора вырастает литература</span></div></div>
+  <div class="chk-item"><div class="chk-text"><strong>Выстроить жанровую лестницу</strong><span>Поговорка и пословица → загадка → частушка → былина → миф → эпос</span></div></div>
+  <div class="chk-item"><div class="chk-text"><strong>Отличать миф от эпоса</strong><span>Миф объясняет, как создан мир; эпос системно объясняет жизнь народа целиком</span></div></div>
+  <div class="chk-group-title">К экзамену и семинару</div>
+  <div class="chk-item"><div class="chk-text"><strong>Заучить примеры эпосов</strong><span>Гильгамеш (шумеры), Манас, Гэсэр, Джангар, Шахнаме, Махабхарата и Рамаяна</span></div></div>
+  <div class="chk-item"><div class="chk-text"><strong>Собрать примеры литературы Востока</strong><span>Веды, Конфуций с «Пятикнижием» и «Беседами и суждениями», Ли Бо, Рашид ад-Дин</span></div></div>
+  <div class="chk-item"><div class="chk-text"><strong>Подготовить вопросы к семинару</strong><span>Отдельно выносятся конфуцианство при Цинь Шихуане и индоевропейская литература; темы отрабатываются со старостами</span></div></div>
+</div>
+
+        <footer class="footer">
+            <div style="margin-bottom: 16px;">
+                <span class="footer-time">🎬 58 мин видео → 📖 ~9 мин чтения</span>
+            </div>
+            <a class="footer-cta" href="https://t.me/BukvitsaAI_bot?start=1129100159" target="_blank" rel="noopener">Сделать конспект своего видео →</a>
+            <div class="footer-brand">Создано в <a href="https://t.me/BukvitsaAI_bot?start=1129100159" target="_blank" rel="noopener">«Буквице»</a></div>
+        </footer>
+    </div>
+
+    <script>
+    (function () {
+        function all(sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
+
+        /* --- Служебные элементы: модель их не генерирует, добавляем сами --- */
+        all('.section-header').forEach(function (h) {
+            if (!h.querySelector('.section-toggle')) {
+                var t = document.createElement('div');
+                t.className = 'section-toggle';
+                t.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>';
+                h.appendChild(t);
+            }
+        });
+        all('.chk-item').forEach(function (i) {
+            if (!i.querySelector('.checkbox')) {
+                var c = document.createElement('div');
+                c.className = 'checkbox';
+                i.insertBefore(c, i.firstChild);
+            }
+        });
+
+        var checklist = document.querySelector('.checklist');
+        var fill = null, label = null;
+        if (checklist && all('.chk-item').length) {
+            var wrap = document.createElement('div');
+            wrap.className = 'chk-progress';
+            wrap.innerHTML = '<div class="chk-progress-track"><div class="chk-progress-fill"></div></div><div class="chk-progress-label"></div>';
+            checklist.appendChild(wrap);
+            fill = wrap.querySelector('.chk-progress-fill');
+            label = wrap.querySelector('.chk-progress-label');
+        }
+
+        /* --- Сохранение прогресса чек-листа между открытиями файла --- */
+        var titleEl = document.querySelector('.header-title');
+        var KEY = 'bukvitsa:' + (titleEl ? titleEl.textContent : document.title).trim().toLowerCase().replace(/\s+/g, '-').slice(0, 80);
+
+        function updateProgress() {
+            var items = all('.chk-item');
+            var done = items.filter(function (i) { return i.classList.contains('checked'); }).length;
+            if (fill) fill.style.width = (items.length ? Math.round(done / items.length * 100) : 0) + '%';
+            if (label) label.textContent = done + ' из ' + items.length;
+        }
+        function saveState() {
+            try {
+                var checked = [];
+                all('.chk-item').forEach(function (it, idx) { if (it.classList.contains('checked')) checked.push(idx); });
+                localStorage.setItem(KEY, JSON.stringify(checked));
+            } catch (e) { /* приватный режим и т.п. */ }
+        }
+        try {
+            var saved = JSON.parse(localStorage.getItem(KEY) || '[]');
+            all('.chk-item').forEach(function (it, idx) { if (saved.indexOf(idx) !== -1) it.classList.add('checked'); });
+        } catch (e) { /* игнорируем повреждённые данные */ }
+        updateProgress();
+
+        /* --- Клики: делегирование, никаких onclick в разметке --- */
+        document.addEventListener('click', function (e) {
+            var target = e.target;
+            var item = target.closest ? target.closest('.chk-item') : null;
+            if (item) {
+                item.classList.toggle('checked');
+                saveState();
+                updateProgress();
+                return;
+            }
+            var head = target.closest ? target.closest('.section-header') : null;
+            if (head) {
+                var sec = head.closest('.section');
+                var content = sec.querySelector('.section-content');
+                sec.classList.toggle('collapsed');
+                if (sec.classList.contains('collapsed')) {
+                    content.style.maxHeight = '';
+                } else {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                }
+            }
+        });
+
+        /* --- Высоты секций для анимации сворачивания --- */
+        function initHeights() {
+            all('.section:not(.collapsed) .section-content').forEach(function (el) {
+                el.style.maxHeight = el.scrollHeight + 'px';
+            });
+        }
+        window.addEventListener('load', initHeights);
+        window.addEventListener('resize', initHeights);
+        initHeights();
+    })();
+    </script>
+</body>
+</html>
